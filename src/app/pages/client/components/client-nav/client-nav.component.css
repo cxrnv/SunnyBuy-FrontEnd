@@ -17,9 +17,9 @@
 }
 
 img{
-    animation: rotate 2s linear infinite;
     margin: auto;
     width: 10%;
+    animation: rotate 2s linear infinite;
 }
 
 @keyframes rotate {

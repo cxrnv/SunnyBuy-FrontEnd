@@ -22,6 +22,9 @@ import { ComputersCardComponent } from './pages/products/products-category/compu
 import { ClientPageComponent } from './pages/client/containers/client-page/client-page.component';
 import { ClientNavComponent } from './pages/client/components/client-nav/client-nav.component';
 import { ClientHeaderComponent } from './pages/client/components/client-header/client-header.component';
+import { CartPageComponent } from './pages/cart/containers/cart-page/cart-page.component';
+import { CartNavComponent } from './pages/cart/components/cart-nav/cart-nav.component';
+import { CartHeaderComponent } from './pages/cart/components/cart-header/cart-header.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +41,12 @@ import { ClientHeaderComponent } from './pages/client/components/client-header/c
     ComputersCardComponent,
     ClientPageComponent,
     ClientNavComponent,
-    ClientHeaderComponent
+    ClientHeaderComponent,
+    CartPageComponent,
+    CartNavComponent,
+    CartHeaderComponent,
 ],
+
   imports: [
     BrowserModule,
     AuthModule,

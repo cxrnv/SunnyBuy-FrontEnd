@@ -25,13 +25,14 @@ import { ClientHeaderComponent } from './pages/client/components/client-header/c
 import { CartPageComponent } from './pages/cart/containers/cart-page/cart-page.component';
 import { CartNavComponent } from './pages/cart/components/cart-nav/cart-nav.component';
 import { CartHeaderComponent } from './pages/cart/components/cart-header/cart-header.component';
+import { HelpPageComponent } from './pages/help/container/help-page/help-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    CarouselComponent,
     NavComponent,
+    CarouselComponent,
     CategoryComponent,
     HeaderComponent,
     FooterComponent,
@@ -45,6 +46,7 @@ import { CartHeaderComponent } from './pages/cart/components/cart-header/cart-he
     CartPageComponent,
     CartNavComponent,
     CartHeaderComponent,
+    HelpPageComponent
 ],
 
   imports: [

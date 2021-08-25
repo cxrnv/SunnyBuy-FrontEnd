@@ -29,6 +29,11 @@ import { CartHeaderComponent } from './pages/cart/components/cart-header/cart-he
 import { HelpPageComponent } from './pages/help/container/help-page/help-page.component';
 import { CreditcardPageComponent } from './pages/payment/creditcard/main/creditcard-page/creditcard-page.component';
 import { PaymentTypeHeaderComponent } from './pages/payment/payment-type-choose/components/payment-type-header/payment-type-header.component';
+import { CreditcardHeaderComponent } from './pages/payment/creditcard/components/creditcard-header/creditcard-header.component';
+import { BilletPageComponent } from './pages/payment/billet/main/billet-page/billet-page.component';
+import { BilletHeaderComponent } from './pages/payment/billet/components/billet-header/billet-header.component';
+import { PixHeaderComponent } from './pages/payment/pix/components/pix-header/pix-header.component';
+import { PixPageComponent } from './pages/payment/pix/main/pix-page/pix-page.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +57,12 @@ import { PaymentTypeHeaderComponent } from './pages/payment/payment-type-choose/
     HelpPageComponent,
     CreditcardPageComponent,
     PaymentTypeChoosePageComponent,
-    PaymentTypeHeaderComponent
+    PaymentTypeHeaderComponent,
+    CreditcardHeaderComponent,
+    BilletPageComponent,
+    BilletHeaderComponent,
+    PixHeaderComponent,
+    PixPageComponent
 ],
 
   imports: [

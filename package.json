@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "~9.1.12",
     "@angular/router": "~9.1.12",
     "apexcharts": "^3.19.3",
-    "bootstrap": "^4.1.1",
+    "bootstrap": "^5.0.1",
     "echarts": "^4.7.0",
     "font-awesome": "^4.7.0",
     "jquery": "^3.6.0",

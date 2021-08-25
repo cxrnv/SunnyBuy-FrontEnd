@@ -1,3 +1,5 @@
+import { PixPageComponent } from './pages/payment/pix/main/pix-page/pix-page.component';
+import { BilletPageComponent } from './pages/payment/billet/main/billet-page/billet-page.component';
 import { CreditcardPageComponent } from './pages/payment/creditcard/main/creditcard-page/creditcard-page.component';
 import { PaymentTypeChoosePageComponent } from './pages/payment/payment-type-choose/main/payment-type-choose-page/payment-type-choose-page.component';
 import { CartPageComponent } from './pages/cart/containers/cart-page/cart-page.component';
@@ -19,10 +21,13 @@ const routes: Routes = [
   { path: 'help', component: HelpPageComponent },
   {
     path: 'payment', component: PaymentTypeChoosePageComponent,
-    children: [{ path: 'creditCard', component: CreditcardPageComponent },
-    ]
+    children:
+      [
+        { path: 'creditCard', component: CreditcardPageComponent },
+        { path: 'billet', component: BilletPageComponent },
+        { path: 'pix', component: PixPageComponent },
+      ]
   },
-
 
   {
     path: '**',

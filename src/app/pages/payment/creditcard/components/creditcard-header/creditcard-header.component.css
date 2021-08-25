@@ -1,6 +1,6 @@
 .card {
-    width: 60%;
-    height: auto;
+    width: 85%;
+    height: 700px;
     border-radius: 25px;
     margin: auto;
     padding: 2rem 3.5rem;
@@ -175,7 +175,7 @@ form .row .col-2 {
 
 .btn {
     text-align: center;
-    width: 40%;
+    width: 25%;
     font-weight: 300;
     color: #fff;
     background-color: rgb(14, 42, 104);
@@ -185,7 +185,7 @@ form .row .col-2 {
 
 .cancel{
     text-align: center;
-    width: 40%;
+    width: 25%;
     font-weight: 300;
     color: #fff;
     background-color: rgb(104, 14, 31);

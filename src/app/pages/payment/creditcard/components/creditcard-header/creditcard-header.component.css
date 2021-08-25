@@ -8,6 +8,7 @@
 }
 
 .title{
+    font-weight: 300;
     text-align: center;
 }
 
@@ -178,6 +179,16 @@ form .row .col-2 {
     font-weight: 300;
     color: #fff;
     background-color: rgb(14, 42, 104);
+    margin-top: 2vh;
+    margin-bottom: 1vh;
+}
+
+.cancel{
+    text-align: center;
+    width: 40%;
+    font-weight: 300;
+    color: #fff;
+    background-color: rgb(104, 14, 31);
     margin-top: 2vh;
     margin-bottom: 1vh;
 }

@@ -1,3 +1,4 @@
+import { PaymentTypeChoosePageComponent } from './pages/payment/payment-type-choose/main/payment-type-choose-page/payment-type-choose-page.component';
 import { ComputersHeaderComponent } from './pages/products/products-category/computers/components/computers-header/computers-header.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -26,6 +27,8 @@ import { CartPageComponent } from './pages/cart/containers/cart-page/cart-page.c
 import { CartNavComponent } from './pages/cart/components/cart-nav/cart-nav.component';
 import { CartHeaderComponent } from './pages/cart/components/cart-header/cart-header.component';
 import { HelpPageComponent } from './pages/help/container/help-page/help-page.component';
+import { CreditcardPageComponent } from './pages/payment/creditcard/main/creditcard-page/creditcard-page.component';
+import { PaymentTypeHeaderComponent } from './pages/payment/payment-type-choose/components/payment-type-header/payment-type-header.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,10 @@ import { HelpPageComponent } from './pages/help/container/help-page/help-page.co
     CartPageComponent,
     CartNavComponent,
     CartHeaderComponent,
-    HelpPageComponent
+    HelpPageComponent,
+    CreditcardPageComponent,
+    PaymentTypeChoosePageComponent,
+    PaymentTypeHeaderComponent
 ],
 
   imports: [

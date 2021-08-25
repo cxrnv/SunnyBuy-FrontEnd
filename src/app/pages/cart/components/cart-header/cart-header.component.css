@@ -1,4 +1,5 @@
 .cart-header{
+    margin-top: 20px;
     width: 70%;
     height: auto;
     background-image:  radial-gradient(ellipse farthest-corner at 105px 104px , #75dbfa, #4365cc, #2d66b5, #f77ced, #8f00ff);
@@ -39,7 +40,7 @@ ul {
 
 .button a {
     display: block;
-    font-size: 18px;
+    font-size: 2px;
     font-weight: 400;
     line-height: 48px;
     color: #FFFFFF;
@@ -57,7 +58,6 @@ ul {
 }
 
 .cart_title {
-    font-size: 30px;
     font-weight: 500
 }
 
@@ -72,6 +72,7 @@ ul {
 
 .cart_item {
     border-radius: 25px;
+    height: 150px;
     background-color: white;
     width: 100%;
     padding: 15px;
@@ -80,8 +81,8 @@ ul {
 }
 
 .cart_item_image {
-    width: 133px;
-    height: 133px;
+    width: 120px;
+    height: 120px;
     float: left
 }
 
@@ -100,13 +101,13 @@ ul {
 }
 
 .cart_item_title {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
     color: #00000080
 }
 
 .cart_item_text {
-    font-size: 18px;
+    font-size: 15px;
     margin-top: 35px
 }
 

@@ -1,3 +1,5 @@
+import { ComputersService } from '../../computers/computers.service';
+import { GetComputer } from '../../models/computer.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComputersCardComponent implements OnInit {
 
-  constructor() { }
+  computers : GetComputer[] = [];
+
+  constructor(private computersService : ComputersService) { }
 
   ngOnInit(): void {
+    this.get();
   }
 
+ get()
+ {
+   this.computersService._getcomputers()
+   .subscribe(computer => 
+    {
+      this.computers = computer;
+    })
+ }
 }

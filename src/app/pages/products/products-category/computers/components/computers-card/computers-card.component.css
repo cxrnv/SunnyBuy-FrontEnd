@@ -35,21 +35,19 @@
     width: 340px
 }
 
-.text-default{
-    color: black ;
-}
-
-.star {
-    margin: 2.5%;
-    width: 5px;
-    color: #ebb504
+.text-default
+{
+    margin-bottom: 30px;
+    color: black;
 }
 
 .bg-cart {
+    margin-top: 5%;
     border: 3px solid #0d0936;
     background-color: #0d0936;
     color: #fff;
     padding: 3%;
+    height: 50px;
     border-radius: 25px;
 }
 
@@ -59,6 +57,11 @@
     padding: 3%;
     font-weight: bold;
     border: 3px solid #0d0936;
+}
+
+.line
+{
+    height: 10px;
 }
 
 .bg-buy:hover {

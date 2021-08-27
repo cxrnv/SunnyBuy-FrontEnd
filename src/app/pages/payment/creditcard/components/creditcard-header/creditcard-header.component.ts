@@ -11,5 +11,4 @@ export class CreditcardHeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

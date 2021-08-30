@@ -1,6 +1,7 @@
 import { ComputersService } from '../../computers/computers.service';
-import { GetComputer } from '../../models/computer.model';
+import { GetComputer } from '../../models/product.model';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-computer-detail',
@@ -9,21 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComputerDetailComponent implements OnInit {
 
-  computer : GetComputer[] = [];
+  id: any;
+  computer : GetComputer;
 
-  constructor(private computersService : ComputersService) { }
+  constructor(private computersService : ComputersService, private route: ActivatedRoute) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get("id");
     this.get();
   }
 
-  get()
-  {
-    this.computersService._getComputerDetail()
-    .subscribe(c => 
-      {
-        this.computer = c;
-      })
-  }
+ get()
+ {
+   this.computersService._getComputerDetail(this.id)
+   .subscribe(detail => 
+    {
+      this.computer = detail;
+    })
+ }
 
 }

@@ -1,4 +1,3 @@
-import { ComputersHeaderComponent } from './pages/products/products-category/computers/components/computers-header/computers-header.component';
 import { ComputersCardComponent } from './pages/products/products-category/computers/components/computers-card/computers-card.component';
 import { ComputerDetailComponent } from './pages/products/products-category/computers/components/computer-detail/computer-detail.component';
 import { PixPageComponent } from './pages/payment/pix/main/pix-page/pix-page.component';
@@ -22,7 +21,7 @@ const routes: Routes = [
     path: 'computers', component: ComputersComponent,
     children:
     [
-      { path: 'detail', component: ComputerDetailComponent },
+      { path: 'detail/:id', component: ComputerDetailComponent },
       { path: 'computers-card', component: ComputersCardComponent }
     ]
   },

@@ -1,5 +1,5 @@
 import { environment } from 'src/environments/environment';
-import { GetComputer } from './../models/computer.model';
+import { GetComputer } from '../models/product.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -18,11 +18,13 @@ export class ComputersService {
 
   constructor(private request: HttpClient) { }
 
-  _getcomputers(){
+  _getcomputers()
+  {
     return this.getComputers();
   }
 
-  private getComputers(){
+  private getComputers()
+  {
     return this.request
     .get<GetComputer[]>(apiUrl + "/Product/category/1")
     .pipe(
@@ -30,14 +32,15 @@ export class ComputersService {
     );
   }
 
-  _getComputerDetail()
+  _getComputerDetail(id: number)
   {
-    return this.getComputerDetail();
+    return this.getComputerDetail(id);
   }
 
-  private getComputerDetail(){
+  private getComputerDetail(id: number)
+  {
     return this.request
-    .get<GetComputer[]>(apiUrl + "/Product/product/id")
+    .get<GetComputer>(apiUrl + "/Product/product/" + id)
     .pipe(
       take(1)
     );

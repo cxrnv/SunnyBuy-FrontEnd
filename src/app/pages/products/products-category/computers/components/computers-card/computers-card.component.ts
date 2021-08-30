@@ -1,5 +1,5 @@
 import { ComputersService } from '../../computers/computers.service';
-import { GetComputer } from '../../models/computer.model';
+import { GetComputer } from '../../models/product.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

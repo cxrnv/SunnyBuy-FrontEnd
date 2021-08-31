@@ -1,7 +1,6 @@
+import { AuthPageComponent } from './auth-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-
-import { AuthPageComponent } from './containers';
 
 const routes: Routes = [
   {

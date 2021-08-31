@@ -1,6 +1,6 @@
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Client } from './models/client.model';
+import { Client } from '../models/client.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
@@ -10,7 +10,8 @@ const apiUrl = environment.apiUrl;
 @Injectable({
   providedIn: 'root'
 })
-export class ClientService {
+export class ClientService 
+{
 
   id: number;
   private _client = new BehaviorSubject<Client[]>([]);

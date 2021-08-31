@@ -1,21 +1,20 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
+import { SignFormComponent } from './sign-form/sign-form.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { AuthPageComponent } from './containers';
+import { MatButtonModule } from '@angular/material/button';
 import { AuthRoutingModule } from './auth-routing.module';
-import { AuthService, EmailService } from './services';
-import { LoginFormComponent, SignFormComponent } from './components';
-import { AuthGuard } from './guards';
+import { AuthPageComponent } from './auth-page.component';
+import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
+import { MatTabsModule } from '@angular/material/tabs';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [
+    SignFormComponent,
     AuthPageComponent,
-    LoginFormComponent,
-    SignFormComponent
+    LoginFormComponent
   ],
   imports: [
     CommonModule,
@@ -27,10 +26,6 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [
-    AuthService,
-    EmailService,
-    AuthGuard
-  ]
+  providers: []
 })
 export class AuthModule { }

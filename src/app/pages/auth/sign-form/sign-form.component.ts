@@ -1,4 +1,4 @@
-import { ClientService } from 'src/app/pages/client/main/client.service';
+import { ClientService } from 'src/app/pages/client/client.service';
 import { Client } from 'src/app/pages/client/models/client.model';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';

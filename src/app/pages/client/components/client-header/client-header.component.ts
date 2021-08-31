@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientService } from '../../main/client.service';
+import { Client } from '../../main/models/client.model';
 
 @Component({
   selector: 'app-client-header',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientHeaderComponent implements OnInit {
 
-  constructor() { }
+  client : Client;
+  constructor(private clientService : ClientService) { }
 
   ngOnInit(): void {
+    this.get();
   }
 
+  
+ get()
+ {
+   this.clientService._getClient()
+   .subscribe(data => 
+    {
+      this.client = data;
+    })
+ }
 }

@@ -1,5 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ClientService } from 'src/app/pages/client/main/client.service';
+import { Client } from 'src/app/pages/client/main/models/client.model';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-sign-form',
@@ -7,20 +9,42 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./sign-form.component.scss']
 })
 export class SignFormComponent implements OnInit {
-  @Output() sendSignForm = new EventEmitter<void>();
-  public form: FormGroup;
 
-  public ngOnInit(): void {
-    this.form = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required])
-    });
+  form: FormGroup = null;
+  client: Client;
+  
+  constructor(private clientService : ClientService) { }
+
+  public ngOnInit(): void 
+  {
+    this.form = this.createSignUp();
   }
 
-  public sign(): void {
-    if (this.form.valid) {
-      this.sendSignForm.emit();
+  createSignUp() : FormGroup
+  {
+    return new FormGroup
+    (
+      {
+        name: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(80)]),
+        email: new FormControl(null, [Validators.email, Validators.required]),
+        password: new FormControl(null, [Validators.minLength(4), Validators.maxLength(50)]), 
+      }
+    )
+  }
+
+  saveSignUp()
+  {
+    const model = 
+    {
+      name: this.form.get('name').value,
+      email: this.form.get('email').value,
+      password: this.form.get('password').value
     }
+
+    this.clientService._postClient(model)
+    .subscribe(x => 
+      {
+        console.log(x);
+      });
   }
 }

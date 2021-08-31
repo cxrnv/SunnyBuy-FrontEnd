@@ -1,15 +1,16 @@
-<form class="form" [formGroup]="form" (ngSubmit)="login()">
+<form class="form" [formGroup]="form" (ngSubmit)="saveLogin()">
+  
   <mat-form-field class="form__input">
-    <input matInput placeholder="Email Address" type="email" formControlName="email">
+    <input name="email" matInput placeholder="Email Address" type="email" formControlName="email">
   </mat-form-field>
 
   <mat-form-field class="form__input">
-    <input matInput placeholder="Password" type="password" formControlName="password">
+    <input name="password" matInput placeholder="Password" type="password" formControlName="password">
   </mat-form-field>
 
   <div class="form-actions">
     <button class="form-actions__login" mat-raised-button color="primary" type="submit">Login</button>
   </div>
-  <button class="form-actions__forget" mat-button>Forget password</button>
+  <hr>
   <button class="form-actions__homepage" routerLink="/homepage" mat-button>Go to site without login</button>
 </form>

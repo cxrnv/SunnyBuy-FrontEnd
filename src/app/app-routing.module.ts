@@ -4,11 +4,11 @@ import { ComputersCardComponent } from './pages/products/products-category/compu
 import { ComputersComponent } from './pages/products/products-category/computers/computers/computers.component';
 import { CreditcardPageComponent } from './pages/payment/creditcard/creditcard-page/creditcard-page.component';
 import { BilletPageComponent } from './pages/payment/billet/main/billet-page/billet-page.component';
-import { HomePageComponent } from './pages/home/containers/home-page/home-page.component';
-import { HelpPageComponent } from './pages/help/container/help-page/help-page.component';
+import { HomePageComponent } from './pages/home/home-page.component';
 import { PixPageComponent } from './pages/payment/pix/main/pix-page/pix-page.component';
 import { ClientPageComponent } from './pages/client/client-page.component';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { HelpPageComponent } from './pages/help/help-page.component';
 import { CartPageComponent } from './pages/cart/cart-page.component';
 import { NgModule } from '@angular/core';
 

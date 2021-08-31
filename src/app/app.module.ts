@@ -18,7 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './pages/auth/auth.module';
-import { HomePageComponent } from './pages/home/containers/home-page/home-page.component';
+import { HomePageComponent } from './pages/home/home-page.component';
 import { CarouselComponent } from './pages/home/components/carousel/carousel.component';
 import { NavComponent } from './pages/home/components/nav/nav.component';
 import { CategoryComponent } from './pages/home/components/category/category.component';
@@ -30,7 +30,7 @@ import { PixHeaderComponent } from './pages/payment/pix/components/pix-header/pi
 import { AddCardComponent } from './pages/payment/creditcard/components/add-card/add-card.component';
 import { CartHeaderComponent } from './pages/cart/cart-header/cart-header.component';
 import { ClientNavComponent } from './pages/client/client-nav/client-nav.component';
-import { HelpPageComponent } from './pages/help/container/help-page/help-page.component';
+import { HelpPageComponent } from './pages/help/help-page.component';
 import { PixPageComponent } from './pages/payment/pix/main/pix-page/pix-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';

@@ -1,4 +1,6 @@
+import { GetProduct } from './../../products/models/product.model';
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../../products/products.service';
 
 @Component({
   selector: 'app-carousel',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarouselComponent implements OnInit {
 
-  constructor() { }
+  products: GetProduct[];
+
+  constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
+    this.getAll();
   }
 
+  getAll() 
+  {
+    return this.productsService._getAllProducts()
+    .subscribe
+    ( a => this.products = a )
+  }
 }

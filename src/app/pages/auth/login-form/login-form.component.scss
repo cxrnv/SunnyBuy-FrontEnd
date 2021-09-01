@@ -2,16 +2,30 @@
 @import "src/app/styles/font";
 
 .form {
+  .example-container {
+    text-align: center;
+  }
+
+  .form-container {
+    width: 400 px;
+    margin: 0 px auto;
+    margin-top: 200 px;
+  }
+
+  .form-field {
+    display: block;
+  }
+
   width: 100%;
 
-  ::ng-deep .mat-form-field-label{
+  ::ng-deep .mat-form-field-label {
     font-size: 1em;
     font-weight: bold;
     font-weight: 400;
-    color:#000 !important;
+    color: #000 !important;
   }
-  
-  &__input {    
+
+  &__input {
     border-radius: 50px;
     width: 100%;
     margin-top: 6px;
@@ -42,7 +56,7 @@
     background-color: #003392;
     margin-right: 0px;
   }
-  
+
   &__homepage:hover {
     background-color: #052157;
   }

@@ -18,6 +18,21 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
+  _getAllProducts()
+  {
+    return this.getAllProducts();
+  }
+
+  private getAllProducts()
+  {
+    return this.http
+    .get<GetProduct[]>(apiUrl + "/Product/")
+    .pipe
+    (
+      take(1)
+    );
+  }
+
   _getProductsCategory(categoryid: number)
   {
     return this.getProductsCategory(categoryid);

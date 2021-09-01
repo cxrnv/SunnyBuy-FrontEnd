@@ -14,7 +14,8 @@ import { NgModule } from '@angular/core';
 
 const routes: Routes =
   [
-    { path: 'homepage', pathMatch: 'full', component: HomePageComponent },
+    
+    { path: '', pathMatch: 'full', component: HomePageComponent },
     {
       path: 'products', component: ProductsComponent,
       children:
@@ -38,7 +39,7 @@ const routes: Routes =
     },
 
     {
-      path: ' ',
+      path: '**',
       redirectTo: '404'
     }
   ];

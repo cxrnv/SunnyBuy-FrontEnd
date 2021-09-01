@@ -1,4 +1,4 @@
-import { GetCart } from './../models/cart.model';
+import { GetCart } from '../models/getCart.model';
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 import { ClientService } from '../../client/client.service';

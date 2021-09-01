@@ -1,7 +1,7 @@
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { GetCart } from './models/cart.model';
+import { GetCart } from './models/getCart.model';
 import { Injectable } from '@angular/core';
 import { catchError, take } from 'rxjs/operators';
 import { ClientService } from '../client/client.service';

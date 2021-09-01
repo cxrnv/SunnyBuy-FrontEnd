@@ -38,7 +38,7 @@ const routes: Routes =
     },
 
     {
-      path: '**',
+      path: ' ',
       redirectTo: '404'
     }
   ];
@@ -46,7 +46,6 @@ const routes: Routes =
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      useHash: true,
       preloadingStrategy: PreloadAllModules
     })
   ],

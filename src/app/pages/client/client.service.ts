@@ -4,6 +4,7 @@ import { Client } from './models/client.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 const apiUrl = environment.apiUrl;
 
@@ -16,7 +17,27 @@ export class ClientService
   private _client = new BehaviorSubject<Client[]>([]);
   public client = this._client.asObservable();
   
-constructor(private request: HttpClient) { }
+  constructor(private request: HttpClient, private snackBar: MatSnackBar) { }
+
+  _showMessageSuccess(message: string): void
+  {
+    const configuration = new MatSnackBarConfig();
+    configuration.panelClass = ['snack-success'];
+    configuration.duration = 5000;
+    configuration.horizontalPosition = "left";
+
+    this.snackBar.open(message, "undo", configuration)
+  }
+
+  _showMessageError(message: string): void
+  {
+    const configuration = new MatSnackBarConfig();
+    configuration.panelClass = ['snack-error'];
+    configuration.duration = 5000;
+    configuration.horizontalPosition = "left";
+
+    this.snackBar.open(message, "undo", configuration)
+  }
 
   _postClient(model: {name: string, email: string, password: string})
   {
@@ -39,13 +60,11 @@ constructor(private request: HttpClient) { }
 
   private login(model : {email: string, password: string}): Observable<number>
   {
-    console.log('url: login: '+ apiUrl)
     return this.request.post<number>(apiUrl + '/Client/login/', model)
     .pipe(
       tap(a => this.id = a),
       take(1)
     );
-    console.log();
   }
 
   _getClient()

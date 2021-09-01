@@ -1,9 +1,10 @@
 import { environment } from 'src/environments/environment';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { GetCart } from './models/cart.model';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { catchError, take } from 'rxjs/operators';
+import { ClientService } from '../client/client.service';
 
 const apiUrl = environment.apiUrl;
 
@@ -15,15 +16,18 @@ export class CartService {
   private _products = new BehaviorSubject<GetCart[]>([]);
   public products = this._products.asObservable();
 
-constructor(private request: HttpClient) { }
+  constructor
+  (
+    private request: HttpClient,
+    private clientService: ClientService ) { }
 
-  _getCart(clientId: number)
+  _getProductsCart(clientId: number)
   {
     localStorage.setItem
-    return this.getCart(clientId);
+    return this.getCartProducts(clientId);
   }
 
-  private getCart(clientId: number)
+  private getCartProducts(clientId: number)
   {
     return this.request
     .get<GetCart[]>(apiUrl + "/Cart/" + clientId)
@@ -33,20 +37,32 @@ constructor(private request: HttpClient) { }
     );
   }
 
-/* 
-  private postCart(clientId: number, productId: number)
+  _postCart(model: {clientId: number, productId: number})
   {
-    return this.request
-    .post(apiUrl + "/Cart/" +);
-  } */
-
- 
-  _deleteCart()
-  {
-    return this.deleteCart();
+    return this.postCart(model);
   }
 
-  private deleteCart()
+  private postCart(model: {clientId: number, productId: number}): Observable<boolean>
+  {
+    console.log(apiUrl)
+    return this.request
+    .post<boolean>(apiUrl + '/Cart/', model)
+    .pipe
+    (
+      take(1),
+
+     catchError(a  => {
+       throw this.clientService._showMessageError('erro kkk')
+     })
+    );
+  }
+ 
+  _deleteProductCart()
+  {
+    return this.deleteProductsCart();
+  }
+
+  private deleteProductsCart()
   {
     return this.request
     .delete<GetCart[]>(apiUrl + "/Cart/")

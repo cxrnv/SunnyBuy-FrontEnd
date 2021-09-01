@@ -1,17 +1,24 @@
+import { LoginFormComponent } from './login-form/login-form.component';
+import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { AuthPageComponent } from './auth-page.component';
-import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 const routes: Routes = [
   {
     path: '',
-    component: AuthPageComponent
+    component: AuthPageComponent,
+     children:
+    [
+      { path: 'login', component: LoginFormComponent },
+    ]
   }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forChild(routes)
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules
+    })
   ],
   exports: [RouterModule]
 })

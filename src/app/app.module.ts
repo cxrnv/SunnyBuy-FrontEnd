@@ -35,6 +35,7 @@ import { PixPageComponent } from './pages/payment/pix/pix-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { NgModule } from '@angular/core';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -64,10 +65,11 @@ import { NgModule } from '@angular/core';
     PixHeaderComponent,
     PixPageComponent,
     AddCardComponent,
-    ProductDetailComponent
-],
-
+    ProductDetailComponent,
+  ],
+  
   imports: [
+    MatSnackBarModule,
     BrowserModule,
     AuthModule,
     BrowserAnimationsModule,

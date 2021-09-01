@@ -18,12 +18,12 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  _getProducts(categoryid: number)
+  _getProductsCategory(categoryid: number)
   {
-    return this.getProducts(categoryid);
+    return this.getProductsCategory(categoryid);
   }
 
-  private getProducts(categoryid: number)
+  private getProductsCategory(categoryid: number)
   {
     return this.http
     .get<GetProduct[]>(apiUrl + "/Product/category/" + categoryid)

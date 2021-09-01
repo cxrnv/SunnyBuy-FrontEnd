@@ -25,7 +25,7 @@ export class ProductsCardComponent implements OnInit {
   }
 
   get() {
-    return this.productsService._getProducts(this.categoryid)
+    return this.productsService._getProductsCategory(this.categoryid)
       .pipe(
         tap(product => {
           this.products = product;

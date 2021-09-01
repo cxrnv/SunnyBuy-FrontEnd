@@ -2,6 +2,7 @@ import { ClientService } from 'src/app/pages/client/client.service';
 import { Client } from 'src/app/pages/client/models/client.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -13,7 +14,7 @@ export class LoginFormComponent implements OnInit
   public form: FormGroup = null;
   client: Client;
   
-  constructor(private clientService : ClientService) { }
+  constructor(private clientService : ClientService, private route: Router) { }
 
   ngOnInit(): void 
   {
@@ -39,10 +40,20 @@ export class LoginFormComponent implements OnInit
       password: this.form.get('password').value
     }
 
-    this.clientService._login(model).subscribe(
-      a =>
+    this.clientService
+    ._login(model)
+    .subscribe(x =>
       {
-        console.log(a)
+        console.log(x)
+
+        if (x != 0)
+        {
+          this.clientService._showMessageSuccess('Operation executed successfully')
+          this.route.navigate(['/homepage']);
+        }else
+        {
+          this.clientService._showMessageError('Email or password incurrect')
+        }
       });
   }
 }

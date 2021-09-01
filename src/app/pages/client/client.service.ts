@@ -12,7 +12,6 @@ const apiUrl = environment.apiUrl;
 })
 export class ClientService 
 {
-
   id: number;
   private _client = new BehaviorSubject<Client[]>([]);
   public client = this._client.asObservable();

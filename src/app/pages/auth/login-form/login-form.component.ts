@@ -15,7 +15,8 @@ export class LoginFormComponent implements OnInit
   
   constructor(private clientService : ClientService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
     this.form = this.createLogin();
   }
 

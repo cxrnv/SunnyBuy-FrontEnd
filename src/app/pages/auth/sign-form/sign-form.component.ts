@@ -2,6 +2,7 @@ import { ClientService } from 'src/app/pages/client/client.service';
 import { Client } from 'src/app/pages/client/models/client.model';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-form',
@@ -13,7 +14,7 @@ export class SignFormComponent implements OnInit {
   form: FormGroup = null;
   client: Client;
   
-  constructor(private clientService : ClientService) { }
+  constructor(private clientService : ClientService, private route: Router) { }
 
   public ngOnInit(): void 
   {
@@ -43,13 +44,14 @@ export class SignFormComponent implements OnInit {
 
     this.clientService._postClient(model)
     .subscribe(x => 
-      {
+      {/* 
         if(x){
-          
+          this.route.navigate(['']);
         }
         else{
-          // mensagem
-        }
+            console.log('error baby');
+        } */
+        console.log(x)
       });
   }
 }

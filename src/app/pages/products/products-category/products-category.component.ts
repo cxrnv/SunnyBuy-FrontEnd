@@ -1,4 +1,6 @@
+import { GetProduct } from '../models/product.model';
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-products-category',
@@ -11,5 +13,6 @@ export class ProductsCategoryComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 
 }

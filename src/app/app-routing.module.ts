@@ -12,36 +12,36 @@ import { HelpPageComponent } from './pages/help/help-page.component';
 import { CartPageComponent } from './pages/cart/cart-page.component';
 import { NgModule } from '@angular/core';
 
-const routes: Routes = 
-[
-  { path: 'homepage', pathMatch: 'full', component: HomePageComponent },
-  { 
-    path: 'computers', component: ProductsComponent,
-    children:
-    [
-      { path: 'detail/:id', component: ProductDetailComponent },
-      { path: 'computers-card', component: ProductsCardComponent }
-    ]
-  },
+const routes: Routes =
+  [
+    { path: 'homepage', pathMatch: 'full', component: HomePageComponent },
+    {
+      path: 'products', component: ProductsComponent,
+      children:
+        [
+          { path: 'detail/:id', component: ProductDetailComponent },
+          { path: 'product-card/:categoryid', component: ProductsCardComponent, pathMatch: 'full' }
+        ]
+    },
 
-  { path: 'client', pathMatch: 'full', component: ClientPageComponent },
-  { path: 'cart', pathMatch: 'full', component: CartPageComponent },
-  { path: 'help', component: HelpPageComponent },
-  {
-    path: 'payment', component: PaymentTypeChoosePageComponent,
-    children:
-      [
-        { path: 'creditCard', component: CreditcardPageComponent },
-        { path: 'billet', component: BilletPageComponent },
-        { path: 'pix', component: PixPageComponent },
-      ]
-  },
+    { path: 'client', pathMatch: 'full', component: ClientPageComponent },
+    { path: 'cart', pathMatch: 'full', component: CartPageComponent },
+    { path: 'help', component: HelpPageComponent },
+    {
+      path: 'payment', component: PaymentTypeChoosePageComponent,
+      children:
+        [
+          { path: 'creditCard', component: CreditcardPageComponent },
+          { path: 'billet', component: BilletPageComponent },
+          { path: 'pix', component: PixPageComponent },
+        ]
+    },
 
-  {
-    path: '**',
-    redirectTo: '404'
-  }
-];
+    {
+      path: '**',
+      redirectTo: '404'
+    }
+  ];
 
 @NgModule({
   imports: [
@@ -53,4 +53,4 @@ const routes: Routes =
   exports: [RouterModule]
 })
 
-export class AppRoutingModule {}
+export class AppRoutingModule { }

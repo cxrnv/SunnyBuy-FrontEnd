@@ -1,6 +1,8 @@
 import { GetProduct } from '../models/product.model';
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../products.service';
+import { ActivatedRoute } from '@angular/router';
+import { switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-products-card',
@@ -9,20 +11,24 @@ import { ProductsService } from '../products.service';
 })
 export class ProductsCardComponent implements OnInit {
 
-  products : GetProduct[] = [];
+  categoryid: any;
+  products: GetProduct[] = [];
 
-  constructor(private productsService : ProductsService) { }
+  constructor(private productsService: ProductsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.get();
+    this.route.params
+      .pipe(
+        tap(params => this.categoryid = params['categoryid']),
+        switchMap(() => this.get()))
+      .subscribe();
   }
 
- get()
- {
-   this.productsService._getProducts()
-   .subscribe(product => 
-    {
-      this.products = product;
-    })
- }
+  get() {
+    return this.productsService._getProducts(this.categoryid)
+      .pipe(
+        tap(product => {
+          this.products = product;
+        }))
+  }
 }

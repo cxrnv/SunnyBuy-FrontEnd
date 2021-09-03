@@ -6,6 +6,12 @@ import { CreditCardMaskPipe } from './CreditCardMask.pipe';
   imports: [
     CommonModule
   ],
-  declarations: [CreditCardMaskPipe]
+  exports:
+  [
+    CreditCardMaskPipe
+  ],
+  declarations: [
+    CreditCardMaskPipe
+  ]
 })
 export class CreditCardMaskModule { }

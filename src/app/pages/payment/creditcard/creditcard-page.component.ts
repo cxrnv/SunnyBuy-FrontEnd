@@ -11,5 +11,4 @@ export class CreditcardPageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

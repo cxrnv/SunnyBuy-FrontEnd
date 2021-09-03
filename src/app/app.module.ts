@@ -27,7 +27,6 @@ import { FooterComponent } from './pages/home/footer/footer.component';
 import { ClientPageComponent } from './pages/client/client-page.component';
 import { BilletPageComponent } from './pages/payment/billet/billet-page.component';
 import { PixHeaderComponent } from './pages/payment/pix/pix-header/pix-header.component';
-import { AddCardComponent } from './pages/payment/creditcard/add-card/add-card.component';
 import { CartHeaderComponent } from './pages/cart/cart-header/cart-header.component';
 import { ClientNavComponent } from './pages/client/client-nav/client-nav.component';
 import { HelpPageComponent } from './pages/help/help-page.component';
@@ -36,6 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { NgModule } from '@angular/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { CreditCardMaskModule } from './core/pipes/CreditCardMask.module';
 
 @NgModule({
   declarations: [
@@ -64,7 +64,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     BilletHeaderComponent,
     PixHeaderComponent,
     PixPageComponent,
-    AddCardComponent,
     ProductDetailComponent,
   ],
   
@@ -79,6 +78,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatCardModule,
     MatButtonModule,
     HttpClientModule,
+    CreditCardMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]

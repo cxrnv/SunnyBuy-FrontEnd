@@ -19,7 +19,7 @@ export class CarouselComponent implements OnInit {
 
   getAll() 
   {
-    return this.productsService._getAllProducts()
+    return this.productsService.getAllProducts()
     .subscribe
     ( a => this.products = a )
   }

@@ -1,4 +1,7 @@
+import { CreditCard } from './../../models/creditcard.model';
+import { PaymentService } from './../../payment.service';
 import { Component, OnInit } from '@angular/core';
+import { ClientService } from 'src/app/pages/client/client.service';
 
 @Component({
   selector: 'app-creditcard-header',
@@ -7,8 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreditcardHeaderComponent implements OnInit {
 
-  constructor() { }
+  cards: CreditCard[];
+
+  constructor(private paymentService: PaymentService, private clientService: ClientService) { }
 
   ngOnInit(): void {
+    this.getExistingsCards()
   }
+
+  getExistingsCards()
+  {
+    return this.paymentService.existingCards()
+    .subscribe(x => 
+      {
+        this.cards = x
+        console.log(x)
+      })
+  }
+
 }

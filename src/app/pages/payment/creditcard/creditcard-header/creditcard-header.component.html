@@ -2,30 +2,16 @@
         <form>    
             <h1 class="title">Credit Card</h1>
             <span id="card-header">Saved cards:</span>
+            
             <div class="saved-cards">
-                <div class="row row-1" >
-                    <div class="col-2"><img class="img-fluid" src="https://img.icons8.com/color/48/000000/mastercard-logo.png" /></div>
-                    <div class="col-7"> <input type="text" placeholder="**** **** **** 3193"> </div>
-                    <div class="col-3 d-flex justify-content-center"> <a href="#">Remove card</a> </div>
-                </div>
-
-                <div class="row row-1" >
-                    <div class="col-2"><img class="img-fluid" src="https://img.icons8.com/color/48/000000/mastercard-logo.png" /></div>
-                    <div class="col-7"> <input type="text" placeholder="**** **** **** 3193"> </div>
-                    <div class="col-3 d-flex justify-content-center"> <a href="#">Remove card</a> </div>
-                </div>
                 
-                <div class="row row-1">
-                    <div class="col-2"><img class="img-fluid" src="https://img.icons8.com/color/48/000000/visa.png" /></div>
-                    <div class="col-7"> <input type="text" placeholder="**** **** **** 4296"> </div>
+                <div class="row row-1" *ngFor="let card of cards">
+                    <div class="col-2">
+                        <img class="img-fluid" src="./../../../../../assets/operator/{{card.operator}}.png"/></div>
+                    <div class="col-7"> 
+                        <input type="text" placeholder="{{ (card.number | mask) }}"></div>
                     <div class="col-3 d-flex justify-content-center"> <a href="#">Remove card</a> </div>
-                </div>
-                
-                <div class="row row-1">
-                    <div class="col-2"><img class="img-fluid" src="https://img.icons8.com/color/48/000000/visa.png" /></div>
-                    <div class="col-7"> <input type="text" placeholder="**** **** **** 4296"> </div>
-                    <div class="col-3 d-flex justify-content-center"> <a href="#">Remove card</a> </div>
-                </div> 
+                </div>           
             </div>
             
             <span id="card-header">Add new card:</span>

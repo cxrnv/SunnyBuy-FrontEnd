@@ -7,4 +7,6 @@ export interface GetCart
     name       : string;
     price      : number;
     detail     : string;
+    deleted    : boolean;
+    total      : number;
 }

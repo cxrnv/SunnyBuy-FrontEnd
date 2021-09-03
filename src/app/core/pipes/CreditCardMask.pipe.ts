@@ -1,12 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'CreditCardMask'
+  name: 'mask'
 })
 export class CreditCardMaskPipe implements PipeTransform {
 
-  transform(value: any, args?: any): any {
-    return null;
+  transform(value: any){
+    return '**** **** **** '+ value.substr(12,16);
   }
-
 }

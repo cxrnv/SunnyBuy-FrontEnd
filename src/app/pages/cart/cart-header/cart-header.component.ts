@@ -10,19 +10,43 @@ import { ClientService } from '../../client/client.service';
 })
 export class CartHeaderComponent implements OnInit {
 
+  totalCart : number;
   clientId: number;
   cart: GetCart[];
 
   constructor(private cartService: CartService, private clientService: ClientService) { }
 
-  ngOnInit(): void {
-    this.get();
+  ngOnInit(): void 
+  {
+    this.cartService.getProductsCart().subscribe();
+
+    this.cartService.products
+    .subscribe(products => this.cart = products);
+    this.total();
   }
 
-  get() {
-    return this.cartService._getProductsCart(this.clientService.id)
-      .subscribe(products => {
-          this.cart = products;
-        })
+  total()
+  {
+    return this.cartService.totalCart()
+    .subscribe(x => this.totalCart = +x);
+  }
+
+   delete(cartId: number)
+  {
+    const model = 
+  {
+    cartId,
+    deleted : true,
+   }
+    return this.cartService.deleteProductCart(model)
+    .subscribe
+    ( a=> 
+      {
+        if(a)
+        {
+          this.clientService.showMessageAttention("Product deleted successfully");
+        }
+      } 
+    );
   }
 }

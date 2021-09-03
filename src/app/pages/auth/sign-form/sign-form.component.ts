@@ -1,7 +1,8 @@
 import { ClientService } from 'src/app/pages/client/client.service';
-import { Client } from 'src/app/pages/client/models/client.model';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { Client } from 'src/app/pages/client/models/client.model';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-form',
@@ -13,7 +14,7 @@ export class SignFormComponent implements OnInit {
   form: FormGroup = null;
   client: Client;
   
-  constructor(private clientService : ClientService) { }
+  constructor(private clientService : ClientService,  private route: Router) { }
 
   public ngOnInit(): void 
   {
@@ -41,15 +42,16 @@ export class SignFormComponent implements OnInit {
       password: this.form.get('password').value
     }
 
-    this.clientService._postClient(model)
+    this.clientService.postClient(model)
     .subscribe(x => 
       {
         if(x){
-          this.clientService._showMessageSuccess('Operation executed successfully')
-          window.location.reload();
+          this.clientService.showMessageSuccess('Operation executed successfully')
+          this.route.navigate(['/login']);
+          // window.location.reload();
         }
         else{
-          this.clientService._showMessageError('Occurred an error while creating a new user')
+          this.clientService.showMessageError('Occurred an error while creating a new user')
         }
       });
   }

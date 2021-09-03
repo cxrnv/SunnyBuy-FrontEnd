@@ -1,9 +1,9 @@
+import { ClientService } from '../../client/client.service';
+import { ProductsService } from '../products.service';
+import { CartService } from '../../cart/cart.service';
 import { GetProduct } from '../models/product.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductsService } from '../products.service';
-import { CartService } from '../../cart/cart.service';
-import { ClientService } from '../../client/client.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -31,7 +31,7 @@ export class ProductDetailComponent implements OnInit {
 
  get()
  {
-   this.productsService._getProductDetail(this.id)
+   this.productsService.getProductDetail(this.id)
    .subscribe(detail => 
     {
       this.product = detail;
@@ -42,15 +42,15 @@ export class ProductDetailComponent implements OnInit {
  addCart()
  {
   const model = {
-    clientId: this.clientService.id, 
+    clientId: this.clientService.getClientId(), 
     productId: this.id
   };
 
-  this.cartService._postCart(model)
+  this.cartService.postCart(model)
   .subscribe
   ( a => 
     {
-      this.clientService._showMessageSuccess('Product added with success');
+      this.clientService.showMessageSuccess('Product added with success');
     }
   );
  }

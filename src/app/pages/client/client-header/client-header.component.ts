@@ -12,17 +12,17 @@ export class ClientHeaderComponent implements OnInit {
   client : Client;
   constructor(private clientService : ClientService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
     this.get();
   }
 
-  
- get()
+  get()
  {
-   this.clientService._getClient()
+   this.clientService.getClient()
    .subscribe(data => 
     {
       this.client = data;
     })
- }
+  }
 }

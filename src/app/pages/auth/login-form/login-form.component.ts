@@ -1,6 +1,6 @@
 import { ClientService } from 'src/app/pages/client/client.service';
-import { Client } from 'src/app/pages/client/models/client.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Client } from 'src/app/pages/client/models/client.model';
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -48,11 +48,11 @@ export class LoginFormComponent implements OnInit
 
         if (x != 0)
         {
-          this.clientService._showMessageSuccess('Operation executed successfully')
-          this.route.navigate(['/homepage']);
+          this.clientService.showMessageSuccess('Operation executed successfully')
+          this.route.navigate(['']);
         }else
         {
-          this.clientService._showMessageError('Email or password incurrect')
+          this.clientService.showMessageError('Email or password incurrect')
         }
       });
   }

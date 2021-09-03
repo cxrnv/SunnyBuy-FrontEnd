@@ -13,3 +13,12 @@
   ::ng-deep .snack-error .mat-simple-snackbar {
     color: white;
   }
+
+  ::ng-deep snack-bar-container.snack-attention {
+    background: rgb(235, 220, 156);
+  }
+  
+  ::ng-deep .snack-attention .mat-simple-snackbar {
+    color: #000;
+  }
+

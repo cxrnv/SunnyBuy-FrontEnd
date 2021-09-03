@@ -1,25 +1,41 @@
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { environment } from 'src/environments/environment';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Client } from './models/client.model';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 const apiUrl = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ClientService 
 {
-  id: number;
   private _client = new BehaviorSubject<Client[]>([]);
   public client = this._client.asObservable();
+
+  public getClientId(){
+    return +localStorage.getItem('clientId');
+  }
   
   constructor(private request: HttpClient, private snackBar: MatSnackBar) { }
 
-  _showMessageSuccess(message: string): void
+  /*------------------public------------------*/
+  public showMessageAttention(message: string): void
+  {
+    const configuration = new MatSnackBarConfig();
+    configuration.panelClass = ['snack-attention'];
+    configuration.duration = 5000;
+    configuration.horizontalPosition = "right";
+    configuration.verticalPosition = "bottom";
+
+    this.snackBar.open(message, "x", configuration)
+  }
+
+  public showMessageSuccess(message: string): void
   {
     const configuration = new MatSnackBarConfig();
     configuration.panelClass = ['snack-success'];
@@ -28,8 +44,8 @@ export class ClientService
 
     this.snackBar.open(message, "undo", configuration)
   }
-
-  _showMessageError(message: string): void
+  
+  public showMessageError(message: string): void
   {
     const configuration = new MatSnackBarConfig();
     configuration.panelClass = ['snack-error'];
@@ -39,12 +55,23 @@ export class ClientService
     this.snackBar.open(message, "undo", configuration)
   }
 
-  _postClient(model: {name: string, email: string, password: string})
+  public postClient(model: {name: string, email: string, password: string})
   {
-    return this.postClient(model);
+    return this._postClient(model);
   }
 
-   private postClient(model: {name: string, email: string, password: string}): Observable<boolean>
+  public _login(model : {email: string, password: string})
+  {
+    return this.login(model);
+  }
+
+  public getClient()
+  {
+    return this._getClient();
+  }
+  /*-----------------private-----------------*/
+
+   private _postClient(model: {name: string, email: string, password: string}): Observable<boolean>
   {
     console.log(apiUrl)
     return this.request.post<boolean>(apiUrl + '/Client/', model)
@@ -53,29 +80,19 @@ export class ClientService
     );
   } 
 
-  _login(model : {email: string, password: string})
-  {
-    return this.login(model);
-  }
-
   private login(model : {email: string, password: string}): Observable<number>
   {
     return this.request.post<number>(apiUrl + '/Client/login/', model)
     .pipe(
-      tap(a => this.id = a),
+      tap(a => localStorage.setItem('clientId', a.toString())),
       take(1)
     );
   }
 
-  _getClient()
-  {
-    return this.getClient();
-  }
-
-  private getClient()
+  private _getClient()
   {
     return this.request
-    .get<Client>(apiUrl + "/Client/11")
+    .get<Client>(`${apiUrl}'/Client/'` + localStorage.getItem('clientId') )
     .pipe
     (
       take(1)

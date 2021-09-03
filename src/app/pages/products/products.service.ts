@@ -18,12 +18,25 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  _getAllProducts()
+  /*------------------public------------------*/
+  public getAllProducts()
   {
-    return this.getAllProducts();
+    return this._getAllProducts();
   }
+  
+  public getProductsCategory(categoryid: number)
+  {
+    return this._getProductsCategory(categoryid);
+  }
+  
+ public getProductDetail(id: number)
+ {
+   return this._getProductDetail(id);
+ }
 
-  private getAllProducts()
+    /*-----------------private-----------------*/
+
+  private _getAllProducts()
   {
     return this.http
     .get<GetProduct[]>(apiUrl + "/Product/")
@@ -33,12 +46,7 @@ export class ProductsService {
     );
   }
 
-  _getProductsCategory(categoryid: number)
-  {
-    return this.getProductsCategory(categoryid);
-  }
-
-  private getProductsCategory(categoryid: number)
+  private _getProductsCategory(categoryid: number)
   {
     return this.http
     .get<GetProduct[]>(apiUrl + "/Product/category/" + categoryid)
@@ -47,12 +55,7 @@ export class ProductsService {
     );
   }
 
-  _getProductDetail(id: number)
-  {
-    return this.getProductDetail(id);
-  }
-
-  private getProductDetail(id: number)
+  private _getProductDetail(id: number)
   {
     return this.http
     .get<GetProduct>(apiUrl + "/Product/product/" + id)

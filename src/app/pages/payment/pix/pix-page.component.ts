@@ -42,7 +42,7 @@ export class PixPageComponent implements OnInit {
     );
   }
 
-  postPurchaseBillet()
+  postPurchasePix()
   {
     const model = 
     {

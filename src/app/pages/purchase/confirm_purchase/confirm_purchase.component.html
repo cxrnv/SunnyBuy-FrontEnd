@@ -1,0 +1,111 @@
+<div class="confirm-purchase">
+  <div class="card-confirm-purchase">
+    <nav>
+      <h2>Purchase Details</h2>
+    </nav>
+    <mat-grid-list cols="2" [rowHeight]="500">
+      <mat-grid-tile>
+        <div class="card">
+          <div class="clientData">
+            <div class="items">
+              <div class="item-1">
+                Full name:
+              </div>
+              <div class="item-2">
+                <p>
+                  {{purchase.name}}
+                </p>
+              </div>
+            </div>
+
+            <div class="items">
+              <div class="item-1">
+                E-mail address:
+              </div>
+              <div class="item-2">
+                <p>
+                  {{purchase.email}}
+                </p>
+              </div>
+            </div>
+            <div class="items">
+              <div class="item-1">
+                Deliver to:
+              </div>
+              <div class="item-2">
+                <p>
+                  {{purchase.address}}
+                </p>
+              </div>
+            </div>
+            <hr>
+          </div>
+
+          <div class="clientData" *ngIf="purchase.paymentTypeEnum == 1">
+            <div class="items">
+              <div class="item-1">
+                Payment type:
+              </div>
+              <div class="item-2">
+                <p>
+                  Credit Card
+                </p>
+              </div>
+            </div>
+
+            <div class="item-credit-card">
+              <strong>
+                Card info:
+              </strong>
+              {{ (purchase.number | mask) }}
+              <img class="operator" src="./../../../../assets/operator/{{purchase.operator}}.png"
+                alt="{{purchase.operator}}">
+            </div>
+            <hr>
+            <div class="button-card">
+              <button class="confirm-btn" mat-raised-button (click)="confirmPurchase()">Confirm Purchase</button>
+              <button class="cancel-btn" mat-raised-button routerLink="">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <div class="card">
+          <div class="total">
+            <h3>Order Summary</h3>
+            <hr>
+
+            <div class="products-purchase">
+
+              <div class="cart_items" *ngFor="let product of cart">
+                <ul class="cart_list">
+                <li class="cart_item">                  
+                  <div class="cart_item_image">
+                    <img class="product_image" src="assets/products/{{product.image}}.png" alt="">
+                  </div>
+                  
+                  <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+                    <div class="cart_item_name cart_info_col">
+                      <div class="cart_item_text">{{product.name}}</div>
+                    </div>
+
+                    <div class="cart_item_price cart_info_col">
+                      <div class="cart_item_text">${{product.price}}</div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>      
+            <h4 class="order-total">
+              <hr>
+              <span class="order"> Order total:</span> ${{purchase.total}}.00
+              <hr>
+            </h4>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>

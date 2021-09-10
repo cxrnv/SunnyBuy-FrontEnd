@@ -1,3 +1,6 @@
+import { HomeModule } from './pages/home/home.module';
+import { PurchaseModule } from './pages/purchase/purchase.module';
+import { MatInputModule } from '@angular/material/input';
 import { PaymentTypeChoosePageComponent } from './pages/payment/payment-type-choose-page.component';
 import { ProductsCategoryComponent } from './pages/products/products-category/products-category.component';
 import { ProductsHeaderComponent } from './pages/products/products-header/products-header.component';
@@ -19,14 +22,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './pages/auth/auth.module';
 import { HomePageComponent } from './pages/home/home-page.component';
-import { CarouselComponent } from './pages/home/carousel/carousel.component';
-import { NavComponent } from './pages/home/nav/nav.component';
-import { CategoryComponent } from './pages/home/category/category.component';
-import { HeaderComponent } from './pages/home/header/header.component';
-import { FooterComponent } from './pages/home/footer/footer.component';
 import { ClientPageComponent } from './pages/client/client-page.component';
 import { BilletPageComponent } from './pages/payment/billet/billet-page.component';
-import { PixHeaderComponent } from './pages/payment/pix/pix-header/pix-header.component';
 import { CartHeaderComponent } from './pages/cart/cart-header/cart-header.component';
 import { ClientNavComponent } from './pages/client/client-nav/client-nav.component';
 import { HelpPageComponent } from './pages/help/help-page.component';
@@ -35,18 +32,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { NgModule } from '@angular/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { CreditCardMaskModule } from './core/pipes/CreditCardMask.module';
+import { CreditCardMaskModule } from './core/pipes/credit-card/CreditCardMask.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatOptionModule } from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
+import { SearchModule } from './core/search/search.module';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    NavComponent,
     CartPageComponent,
-    CarouselComponent,
-    CategoryComponent,
-    HeaderComponent,
-    FooterComponent,
     ProductsComponent,
     ProductsHeaderComponent,
     ProductsCategoryComponent,
@@ -57,12 +55,11 @@ import { CreditCardMaskModule } from './core/pipes/CreditCardMask.module';
     CartHeaderComponent,
     HelpPageComponent,
     CreditcardPageComponent,
+    CreditcardHeaderComponent,
     PaymentTypeChoosePageComponent,
     PaymentTypeHeaderComponent,
-    CreditcardHeaderComponent,
     BilletPageComponent,
     BilletHeaderComponent,
-    PixHeaderComponent,
     PixPageComponent,
     ProductDetailComponent,
   ],
@@ -78,7 +75,17 @@ import { CreditCardMaskModule } from './core/pipes/CreditCardMask.module';
     MatCardModule,
     MatButtonModule,
     HttpClientModule,
-    CreditCardMaskModule
+    CreditCardMaskModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatOptionModule,
+    MatSelectModule,
+    PurchaseModule,
+    HomeModule,
+    SearchModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -60,8 +60,22 @@ img{
 
 .material-icons:hover{
     cursor: default;
-    transform: rotate(20deg);
-    color: rgb(243, 193, 28);
+    color: rgb(240, 174, 231);
     margin-left: 6%;
 }
 
+.cart-basket {
+    display: flexbox;
+    text-align: center;
+    width: 16px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.count
+{
+    border-radius: 50%;
+    color: #fff;
+    background-color: rgb(145, 5, 91);
+    font-size: 0.4em;
+}

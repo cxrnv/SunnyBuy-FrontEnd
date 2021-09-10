@@ -1,3 +1,5 @@
+import { Confirm_purchaseComponent } from './pages/purchase/confirm_purchase/confirm_purchase.component';
+import { Purchase_completeComponent } from './pages/purchase/purchase_complete/purchase_complete.component';
 import { PaymentTypeChoosePageComponent } from './pages/payment/payment-type-choose-page.component';
 import { ProductDetailComponent } from './pages/products/product-detail/product-detail.component';
 import { ProductsCardComponent } from './pages/products/products-card/products-card.component';
@@ -11,10 +13,10 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HelpPageComponent } from './pages/help/help-page.component';
 import { CartPageComponent } from './pages/cart/cart-page.component';
 import { NgModule } from '@angular/core';
+import { PurchaseComponent } from './pages/purchase/purchase.component';
 
 const routes: Routes =
   [
-    
     { path: '', pathMatch: 'full', component: HomePageComponent },
     {
       path: 'products', component: ProductsComponent,
@@ -37,6 +39,13 @@ const routes: Routes =
           { path: 'pix', component: PixPageComponent },
         ]
     },
+
+    { path: 'purchase', component: PurchaseComponent, 
+      children:
+      [
+        { path: 'confirm', component: Confirm_purchaseComponent},
+        { path: 'complete', component: Purchase_completeComponent}
+      ]},
 
     {
       path: '**',

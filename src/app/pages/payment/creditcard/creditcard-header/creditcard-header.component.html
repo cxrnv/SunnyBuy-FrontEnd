@@ -1,36 +1,98 @@
-    <div class="card mt-100 mb-100">
-        <form>    
-            <h1 class="title">Credit Card</h1>
-            <span id="card-header">Saved cards:</span>
-            
-            <div class="saved-cards">
-                
-                <div class="row row-1" *ngFor="let card of cards">
-                    <div class="col-2">
-                        <img class="img-fluid" src="./../../../../../assets/operator/{{card.operator}}.png"/></div>
-                    <div class="col-7"> 
-                        <input type="text" placeholder="{{ (card.number | mask) }}"></div>
-                    <div class="col-3 d-flex justify-content-center"> <a href="#">Remove card</a> </div>
-                </div>           
-            </div>
-            
-            <span id="card-header">Add new card:</span>
-            <div class="row-1">
-                <div class="row row-2"> <span id="card-inner">Card holder name</span> </div>
-                <div class="row row-2"> <input type="text" placeholder="Bojan Viner"> </div>
-            </div>
-            <div class="row three">
+<div class="card mt-100 mb-100">
+    <form>
+        <h1 class="title">Credit Card</h1>
+        <span id="card-header">Saved cards:</span>
+
+        <div class="saved-cards">
+            <div class="row row-1 cards" data-toggle="modal" data-target="#exampleModalCenter" *ngFor="let card of cards">
+                <div class="col-2">
+                    <img class="img-fluid" src="./../../../../../assets/operator/{{card.operator}}.png" />
+                </div>
                 <div class="col-7">
-                    <div class="row-1">
-                        <div class="row row-2"> <span id="card-inner">Card number</span> </div>
-                        <div class="row row-2"> <input type="text" placeholder="5134-5264-4"> </div>
+                    <input type="text" disabled placeholder="{{ (card.number | mask) }}">
+                </div>
+                <div class="button_delete" class="col-3 d-flex justify-content-center">
+                    <a (click)="deleteCard(card.creditCardId)">Remove card</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal are you sure u want to choose this card -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                       <div class="saved-cards">
+                        <div class="row row-1 cards" (click)="postPurchase(card.creditCardId)" data-toggle="modal" data-target="#exampleModalCenter" *ngFor="let card of cards">
+                            <div class="col-2">
+                                <img class="img-fluid" src="./../../../../../assets/operator/{{card.operator}}.png" />
+                            </div>
+                            <div class="col-7">
+                                <input type="text" disabled placeholder="{{ (card.number | mask) }}">
+                            </div>
+                            <div class="button_delete" class="col-3 d-flex justify-content-center">
+                                <a (click)="deleteCard(card.creditCardId)">Remove card</a>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
-                <div class="col-2"> <input type="text" placeholder="Exp. date"> </div>
-                <div class="col-2"> <input type="text" placeholder="CVV"> </div>
-            </div> 
-            <button mat-raised-button class="btn d-flex mx-auto justify-content-center"><b>Add card</b></button>
+            </div>
+        </div>
 
-            <button routerLink="/cart" mat-raised-button class="btn cancel d-flex mx-auto justify-content-center"><b>Cancel</b></button>
+        <span id="card-header">Add new card:</span>
+
+        <div class="row-1">
+            <div class="row row-2">
+                <span id="card-inner">Card holder name</span>
+            </div>
+            <div class="row row-2" *ngIf="client.name">
+                <input disabled type="text" placeholder="{{client.name}}">
+            </div>
+        </div>
+
+        <form class="form" [formGroup]="formCard" (ngSubmit)="addCard()">
+            <div class="row three">
+                <div class="col-5">
+                    <div class="row-1">
+                        <div class="row row-2">
+                            <span id="card-inner">Card number</span>
+                        </div>
+                        <div class="row row-2">
+                            <input type="text" placeholder="0000-0000-0000-0000" formControlName="number">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div>
+                        <div class="row row-2">
+                            <span id="card-inner">Operator</span>
+                        </div>
+                        <input type="text" placeholder="Mastercard" formControlName="operator">
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <div>
+                        <div class="row row-2">
+                            <span id="card-inner">Exp. date</span>
+                        </div>
+                        <input type="text" placeholder="00/00" formControlName="dueDate">
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <div>
+                        <div class="row row-2"> <span id="card-inner">CCV</span> </div>
+                        <input type="text" placeholder="000" formControlName="securityCode">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" mat-raised-button class="btn d-flex mx-auto justify-content-center"><b>Add
+                    card</b></button>
+            <button routerLink="/cart" mat-raised-button
+                class="btn cancel d-flex mx-auto justify-content-center"><b>Cancel</b></button>
         </form>
-    </div>
+    </form>
+</div>

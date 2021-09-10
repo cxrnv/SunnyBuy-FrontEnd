@@ -1,0 +1,42 @@
+<div class="complete-purchase">
+  <div class="card-complete-purchase">
+    <nav>
+      <h2>Purchase Complete</h2>
+    </nav>
+    <mat-grid-list cols="1" [rowHeight]="525">
+      
+      <mat-grid-tile>
+        <div class="card">
+          <div class="clientData">
+            <div class="items">
+              <div class="item-2">
+                <p>
+                  {{purchase.name}}
+                </p>
+                <p>
+                  {{purchase.address}}
+                </p>
+                <p>
+                  {{purchase.email}}
+                </p>
+                <p>
+                  {{purchase.total}}
+                </p>
+                <p>
+                  {{purchase.total}}
+                </p>
+                <p>
+                  {{purchase.datePurchase}}
+                </p>
+              </div>
+            </div>
+            
+            <hr>
+          </div>
+
+          
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>

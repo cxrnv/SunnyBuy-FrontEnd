@@ -1,3 +1,50 @@
 <div class="pix-page">
-    <app-pix-header></app-pix-header>
+    <div class="pix-header">
+        <div class="card mt-100 mb-100">
+            <h1 class="title">Pix</h1>
+        
+            <div class="billet-model">
+                <div class="container">
+                    <div class="nav-item">
+                        <div class="data-item">
+                            <p>{{client.name}}</p>
+                            <p>{{client.email}}</p>
+                            <hr>
+                            <p>
+                                Bank agency
+                                <b>
+                                    <img class="logo" src="assets/payment/billet/logo.png" alt="">
+                                </b>
+                            </p>
+                            <p>
+                                Emission date:
+                                <b>{{date_time}}</b>
+                            </p>
+                            <hr>
+                            <p>
+                                Amount to pay:
+                                <b class="total-n">
+                                    ${{total}}.00
+                                </b>
+                            </p>
+                        </div>
+                    </div>
+        
+                    <div class="item billed-code">
+                        <div>
+                            <hr>
+                            <img src="assets/payment/billet/billets.jpg" alt="">
+                            <h6>0192301930</h6>
+                            <hr>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="card-btn">
+                        <button class="cancel" routerLink="/cart" mat-raised-button>Cancel</button>
+                        <button class="next" mat-raised-button>Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,32 +1,46 @@
-<div class="cart-header" >
-    <h1 class="cart-title">Your cart</h1>
-    <div class="cart-products" >
+<div class="cart-header">
+    <h1 class="cart-title">Cart</h1>
+    <div class="cart-products">
         <div class="cart_section">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-10 offset-lg-1">
                         <div class="cart_container">
 
+                            <div class="empty-cart-container" *ngIf="totalCart == 0">
+                                <hr>
+                                <div class="empty-cart">
+                                    <h2>
+                                        Cart is empty &nbsp; :'(
+                                    </h2>
+                                </div>
+                                <hr>
+                                <br>
+                                <br>
+                                <button routerLink="" *ngIf="totalCart == 0" mat-raised-button class="btn-choose-products"
+                                    data-toggle="modal" data-target="#exampleModalCenter">Choose products</button>
+                            </div>
 
-                            <div class="cart_items"  *ngFor="let product of cart">
+                            <div class="cart_items" *ngFor="let product of cart">
                                 <ul class="cart_list">
                                     <li class="cart_item">
-                                        
+
                                         <div class="cart_item_image">
                                             <img src="./../../../../assets/products/{{product.image}}.png" alt="">
                                         </div>
-                                        
-                                        <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">    
-                                            <div class="cart_item_name cart_info_col" >
+
+                                        <div
+                                            class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+                                            <div class="cart_item_name cart_info_col">
                                                 <div class="cart_item_title">Name</div>
                                                 <div class="cart_item_text">{{product.name}}</div>
                                             </div>
 
-                                            <div class="cart_item_detail cart_info_col" >
+                                            <div class="cart_item_detail cart_info_col">
                                                 <div class="cart_item_title">Detail</div>
                                                 <div class="cart_item_text"> {{product.detail}}</div>
                                             </div>
-                                        
+
                                             <div class="cart_item_price cart_info_col">
                                                 <div class="cart_item_title">Price</div>
                                                 <div class="cart_item_text">${{product.price}}</div>
@@ -34,8 +48,9 @@
 
                                             <div class="cart_item_delete cart_info_col">
                                                 <div class="cart_item_title">
-                                                    <span class="material-icons" (click)="delete(product.cartId)">
-                                                    remove_circle
+                                                    <span class="material-icons delete"
+                                                        (click)="delete(product.cartId)">
+                                                        remove_circle
                                                     </span>
                                                 </div>
                                             </div>
@@ -45,48 +60,51 @@
                                 </ul>
                             </div>
 
-                            <div class="order_total">
+                            <div class="order_total" *ngIf="totalCart !== 0">
                                 <div class="order_total_content text-md-right">
                                     <div class="order_total_title">Total:</div>
-                                    <div class="order_total_amount" *ngIf="total">${{totalCart}}</div>
+                                    <div class="order_total_amount" *ngIf="totalCart">${{totalCart}}</div>
                                 </div>
                             </div>
-                            <div class="cart_buttons">
+
+                            <div class="cart_buttons" *ngIf="totalCart !== 0">
 
                                 <button mat-raised-button class="btn-buy-cart" data-toggle="modal"
                                     data-target="#exampleModalCenter">Buy</button>
 
                                 <!-- Modal choose payment type -->
-                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalCenterTitle">Choose an payment
                                                     type</h5>
-                                                </div>
-                                                <div routerLink="/payment/creditCard" class="modal-body" data-dismiss="modal">
-                                                    Credit Card
-                                                </div>
-                                                <div routerLink="/payment/billet" class="modal-body" data-dismiss="modal">
-                                                    Billet
-                                                </div>
-                                                <div routerLink="/payment/pix" class="modal-body" data-dismiss="modal">
-                                                    Pix
-                                                </div>
-                                                <div class="modal-footer text-center">
-                                                    <button id="close-btn" mat-raised-button class="btn btn-secondary"
+                                            </div>
+                                            <div routerLink="/payment/creditCard" class="modal-body"
+                                                data-dismiss="modal">
+                                                Credit Card
+                                            </div>
+                                            <div routerLink="/payment/billet" class="modal-body" data-dismiss="modal">
+                                                Billet
+                                            </div>
+                                            <div routerLink="/payment/pix" class="modal-body" data-dismiss="modal">
+                                                Pix
+                                            </div>
+                                            <div class="modal-footer text-center">
+                                                <button id="close-btn" mat-raised-button class="btn btn-secondary"
                                                     data-dismiss="modal">Close</button>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
-                                <button mat-raised-button routerLink="" class="btn-continue-shopping">Continue Shopping</button>
+                                <button mat-raised-button routerLink="" class="btn-continue-shopping">Continue
+                                    Shopping</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

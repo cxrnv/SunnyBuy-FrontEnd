@@ -1,6 +1,6 @@
 import { environment } from 'src/environments/environment';
 import { CreditCard } from './models/creditcard.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -31,13 +31,34 @@ constructor(private http: HttpClient, private clientService: ClientService) { }
     return this._existingCards();
   }
   
+  public putCreditCard(model: {clientId: number, creditCardId: number, deleted: boolean})
+  {
+    return this._putCreditCard(model);
+  }
+
   /*-----------------private-----------------*/
 
   private _postCreditCard(model: {clientId: number, dueDate: string, number: number,  securityCode: string, operator: string}): Observable<boolean>
   {
-    console.log(apiUrl)
     return this.http.post<boolean>(apiUrl + '/CreditCard/', model)
     .pipe(
+      take(1)
+    );
+  }
+
+  private _putCreditCard(model: {clientId: number, creditCardId: number, deleted: boolean}) : Observable<boolean>
+  {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: model
+    };
+    
+    console.log("put")
+    return this.http.delete<boolean>(apiUrl +  '/CreditCard/', options)
+    .pipe
+    (
       take(1)
     );
   }

@@ -9,4 +9,5 @@ export interface GetCart
     detail     : string;
     deleted    : boolean;
     total      : number;
+    count      : number;
 }

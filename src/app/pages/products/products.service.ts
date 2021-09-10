@@ -39,7 +39,7 @@ export class ProductsService {
   private _getAllProducts()
   {
     return this.http
-    .get<GetProduct[]>(apiUrl + "/Product/")
+    .get<GetProduct[]>(apiUrl + "/product/")
     .pipe
     (
       take(1)
@@ -49,7 +49,7 @@ export class ProductsService {
   private _getProductsCategory(categoryid: number)
   {
     return this.http
-    .get<GetProduct[]>(apiUrl + "/Product/category/" + categoryid)
+    .get<GetProduct[]>(apiUrl + "/product/category/" + categoryid)
     .pipe(
       take(1)
     );
@@ -58,7 +58,7 @@ export class ProductsService {
   private _getProductDetail(id: number)
   {
     return this.http
-    .get<GetProduct>(apiUrl + "/Product/product/" + id)
+    .get<GetProduct>(apiUrl + "/product/product/" + id)
     .pipe(
       take(1)
     );

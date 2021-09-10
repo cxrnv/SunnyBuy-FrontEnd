@@ -23,6 +23,7 @@ export class ClientHeaderComponent implements OnInit {
    .subscribe(data => 
     {
       this.client = data;
+      console.log(data.name)
     })
   }
 }

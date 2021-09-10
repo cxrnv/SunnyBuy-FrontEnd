@@ -14,6 +14,7 @@ const apiUrl = environment.apiUrl;
 
 export class ClientService 
 {
+  /* x Array */
   private _client = new BehaviorSubject<Client[]>([]);
   public client = this._client.asObservable();
 
@@ -92,10 +93,10 @@ export class ClientService
   private _getClient()
   {
     return this.request
-    .get<Client>(`${apiUrl}'/Client/'` + localStorage.getItem('clientId') )
+    .get<Client>( apiUrl + '/Client/' + localStorage.getItem('clientId'))
     .pipe
     (
       take(1)
-    );
+    )
   }
 }

@@ -31,9 +31,23 @@ public postPurchase(model: {clientId: number, creditCardId: number, paymentTypeE
   return this._postPurchase(model);
 }
 
+public postPurchaseBilletPix(model: {clientId: number, paymentTypeEnum: number})
+{
+  return this._postPurchaseBilletPix(model);
+}
+
 /*-----------------private-----------------*/
 
 private _postPurchase(model: {clientId: number, creditCardId: number, paymentTypeEnum: number}) : Observable<boolean>
+{  
+  return this.http.post<boolean>(apiUrl + '/Purchase/', model)
+  .pipe
+  (
+    take(1)
+  );
+}
+
+private _postPurchaseBilletPix(model: {clientId: number, paymentTypeEnum: number}) : Observable<boolean>
 {  
   return this.http.post<boolean>(apiUrl + '/Purchase/', model)
   .pipe

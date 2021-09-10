@@ -2,7 +2,6 @@
     <div class="pix-header">
         <div class="card mt-100 mb-100">
             <h1 class="title">Pix</h1>
-        
             <div class="billet-model">
                 <div class="container">
                     <div class="nav-item">
@@ -29,12 +28,13 @@
                             </p>
                         </div>
                     </div>
-        
-                    <div class="item billed-code">
+
+                    <div class="item pix-code">
                         <div>
                             <hr>
-                            <img src="assets/payment/billet/billets.jpg" alt="">
-                            <h6>0192301930</h6>
+                            <ngx-qrcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel"
+                                [value]="value" cssClass="bshadow"></ngx-qrcode>
+                                {{code}}
                             <hr>
                         </div>
                     </div>

@@ -1,7 +1,11 @@
+import { Guid } from 'guid-typescript';
 import { Component, OnInit } from '@angular/core';
+import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
 import { CartService } from '../../cart/cart.service';
 import { ClientService } from '../../client/client.service';
 import { Client } from '../../client/models/client.model';
+import { PurchaseService } from '../../purchase/purchase.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pix-page',
@@ -10,13 +14,18 @@ import { Client } from '../../client/models/client.model';
 })
 export class PixPageComponent implements OnInit {
 
+  code = Guid.create();
   date_time = new Date().toLocaleDateString();
   total: number;
   client: Client = {} as Client;
+  elementType = NgxQrcodeElementTypes.URL;
+  correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
+  value = 'https://www.techiediaries.com/';
   
-  constructor(private clientService: ClientService, private cartService: CartService) { }
+  constructor(private clientService: ClientService, private cartService: CartService, private purchaseService:PurchaseService, private route: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
     this.clientService.getClient()
     .subscribe
     (
@@ -31,6 +40,32 @@ export class PixPageComponent implements OnInit {
     (
       x => { this.total = x}
     );
+  }
+
+  postPurchaseBillet()
+  {
+    const model = 
+    {
+      clientId         : this.clientService.getClientId(),
+      paymentTypeEnum  : 3
+    }
+
+    return this.purchaseService.postPurchaseBilletPix(model)
+    .subscribe
+    (
+      x => 
+      { 
+        if(x)
+        {
+          console.log("true purchase / pix")
+          this.route.navigate(['/purchase/confirm']);
+        }
+        else
+        {
+          console.log("false")
+        }
+      }  
+    ); 
   }
 
 }

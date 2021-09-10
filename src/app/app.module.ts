@@ -7,8 +7,6 @@ import { ProductsHeaderComponent } from './pages/products/products-header/produc
 import { PaymentTypeHeaderComponent } from './pages/payment/payment-header/payment-type-header.component';
 import { ProductDetailComponent } from './pages/products/product-detail/product-detail.component';
 import { ProductsCardComponent } from './pages/products/products-card/products-card.component';
-import { CreditcardHeaderComponent } from './pages/payment/creditcard/creditcard-header/creditcard-header.component';
-import { BilletHeaderComponent } from './pages/payment/billet/billet-header/billet-header.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { CreditcardPageComponent } from './pages/payment/creditcard/creditcard-page.component';
 import { ClientHeaderComponent } from './pages/client/client-header/client-header.component';
@@ -39,6 +37,7 @@ import { MatOptionModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { SearchModule } from './core/search/search.module';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 @NgModule({
   declarations: [
@@ -55,16 +54,15 @@ import {MatGridListModule} from '@angular/material/grid-list';
     CartHeaderComponent,
     HelpPageComponent,
     CreditcardPageComponent,
-    CreditcardHeaderComponent,
     PaymentTypeChoosePageComponent,
     PaymentTypeHeaderComponent,
     BilletPageComponent,
-    BilletHeaderComponent,
     PixPageComponent,
     ProductDetailComponent,
   ],
   
   imports: [
+    NgxQRCodeModule,
     MatSnackBarModule,
     BrowserModule,
     AuthModule,

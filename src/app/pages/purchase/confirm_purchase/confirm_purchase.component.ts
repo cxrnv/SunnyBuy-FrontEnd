@@ -32,6 +32,7 @@ export class Confirm_purchaseComponent implements OnInit {
     return this.purchaseService.getPurchase(this.clientService.getClientId())
     .subscribe(data => 
       {
+        console.log(data.paymentTypeEnum)
         console.log(data)
         this.purchase = data;
       })

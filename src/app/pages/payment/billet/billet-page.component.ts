@@ -52,7 +52,6 @@ export class BilletPageComponent implements OnInit {
       { 
         if(x)
         {
-          console.log("true purchase / billet")
           this.route.navigate(['/purchase/confirm']);
         }
         else

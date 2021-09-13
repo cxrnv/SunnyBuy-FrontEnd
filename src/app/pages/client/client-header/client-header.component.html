@@ -24,7 +24,7 @@
 
                     <div class="form-clientData">
 
-                        <form class="form" [formGroup]="formEdit" autocomplete="off">
+                        <form class="form" [formGroup]="formEdit" autocomplete="off" disabled>
                             <mat-form-field class="form__input">
                                 <input name="name" matInput placeholder="Full name" type="text" formControlName="name">
                             </mat-form-field>
@@ -53,8 +53,10 @@
                                     formControlName="address">
                             </mat-form-field>
                             <hr>
+                            <button mat-raised-button class="btn-edit-account" type="button"
+                                (click)="enableEditClient()">Edit profile</button>
                             <button mat-raised-button class="btn-edit-account" type="submit"
-                                (click)="saveEditClient()">Edit profile</button>
+                                (click)="saveEditClient()">Save profile</button>
                             <button mat-raised-button class="btn-disable-account" ty>Disable account</button>
                         </form>
                     </div>
@@ -63,7 +65,8 @@
             </div>
             <div class="profile">
                 <div class="modal-picture-profile">
-                    <img class="profile_picture" src="./../../../../../assets/profile/profile.jpg" alt="img_profile">
+                    <input #Image type="file" (change)="handleFileInput($event.target.files)" />
+                    <img class="profile_picture" [src]="client.image" alt="img_profile">
                 </div>
             </div>
         </div>

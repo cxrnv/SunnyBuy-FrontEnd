@@ -10,7 +10,7 @@ import { Client } from '../models/client.model';
   styleUrls: ['./client-header.component.scss']
 })
 export class ClientHeaderComponent implements OnInit {
-
+  fileToUpload: any;
   formEdit: FormGroup;
   client: Client = {} as Client;
 
@@ -18,6 +18,7 @@ export class ClientHeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.formEdit = this.editClient();
+    this.formEdit.disable();
     this.get();
   }
 
@@ -30,9 +31,13 @@ export class ClientHeaderComponent implements OnInit {
           email: new FormControl(null, [Validators.email, Validators.required]),
           password: new FormControl(null, [Validators.minLength(4), Validators.maxLength(50)]),
           address: new FormControl(null, [Validators.minLength(10), Validators.maxLength(100)]),
-          phone: new FormControl(null, [Validators.minLength(11), Validators.maxLength(11)])
+          phone: new FormControl(null, [Validators.minLength(11), Validators.maxLength(11)]),
         }
       )
+  }
+
+  enableEditClient(){
+    this.formEdit.enable();
   }
 
   saveEditClient() {
@@ -45,13 +50,15 @@ export class ClientHeaderComponent implements OnInit {
       password: this.formEdit.get('password').value,
       address: this.formEdit.get('address').value,
       phone: this.formEdit.get('phone').value,
+      image: this.client.image
     }
 
     this.clientService.editClient(model)
       .subscribe(x => {
         if (x) {
+
           this.clientService.showMessageSuccess('Operation executed successfully')
-          this.route.navigate(['/cart']);
+          this.formEdit.disable()
         }
         else {
           this.clientService.showMessageError('Occurred an error while editing')
@@ -63,11 +70,36 @@ export class ClientHeaderComponent implements OnInit {
     this.clientService.getClient()
       .subscribe(data => {
         this.client = data;
-        console.log(data.name)
+        this.formEdit.patchValue(data);
       })
   }
 
-  teste(){
-    console.log(this.formEdit)
+  handleFileInput(file: FileList) {
+    this.fileToUpload = file.item(0);
+
+    //Show image preview
+    let reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.client.image = reader.result;
+    }
+    reader.readAsDataURL(this.fileToUpload);
+  }
+
+  editImage() {
+
+  }
+
+  getBase64(event) {
+    let me = this;
+    let file = event.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      //me.modelvalue = reader.result;      
+    };
+
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
   }
 }

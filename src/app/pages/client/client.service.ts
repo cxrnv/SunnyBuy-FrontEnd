@@ -66,7 +66,7 @@ export class ClientService
     return this.login(model);
   }
 
-  public editClient(model: { clientId: number, clientCpf: string, name: string, email: string, password: string, address: string, phone: string})
+  public editClient(model: { clientId: number, clientCpf: string, name: string, email: string, password: string, address: string, phone: string, image: string | ArrayBuffer})
   {
     return this._editClient(model);
   }
@@ -86,7 +86,9 @@ export class ClientService
     );
   } 
 
-  private _editClient(model: { clientId: number, clientCpf: string, name: string, email: string, password: string, address: string, phone: string}): Observable<boolean>
+
+
+  private _editClient(model: { clientId: number, clientCpf: string, name: string, email: string, password: string, address: string, phone: string, image: string | ArrayBuffer}): Observable<boolean>
   {
     console.log("edit")
     return this.request.put<boolean>(apiUrl + '/Client/edit/', model)

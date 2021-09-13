@@ -16,7 +16,7 @@ export class CreditcardPageComponent implements OnInit {
 
   formCard     : FormGroup = null;
   client       : Client = {} as Client;
-  cards        : CreditCard[] = {} as CreditCard[];
+  cards        : CreditCard[];
 
   constructor( private route: Router, private paymentService: PaymentService, private clientService: ClientService, private purchaseService: PurchaseService) { }
 
@@ -125,7 +125,6 @@ export class CreditcardPageComponent implements OnInit {
       { 
         if(x)
         {
-          console.log("true p")
           this.route.navigate(['/purchase/confirm']);
         }
         else

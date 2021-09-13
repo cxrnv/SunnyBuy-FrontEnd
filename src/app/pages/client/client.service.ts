@@ -89,7 +89,7 @@ export class ClientService
   private _editClient(model: { clientId: number, clientCpf: string, name: string, email: string, password: string, address: string, phone: string}): Observable<boolean>
   {
     console.log("edit")
-    return this.request.post<boolean>(apiUrl + '/Client/edit/', model)
+    return this.request.put<boolean>(apiUrl + '/Client/edit/', model)
     .pipe(
       take(1)
     );

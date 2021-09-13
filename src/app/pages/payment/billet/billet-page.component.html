@@ -28,14 +28,14 @@
                             </p>
                         </div>
                     </div>
-        
+
                     <div class="item billed-code">
                         <div>
                             <hr>
                             <img src="assets/payment/billet/billets.jpg" alt="">
                             <br>
                             <span>
-                                    {{code}} {{code}}
+                                {{code}} {{code}}
                             </span>
                             <hr>
                         </div>
@@ -43,7 +43,30 @@
                     <hr>
                     <div class="card-btn">
                         <button class="cancel" routerLink="/cart" mat-raised-button>Cancel</button>
-                        <button class="next" (click)="postPurchaseBillet()" mat-raised-button>Next</button>
+                        <button *ngIf="client.address !== null" class="next" (click)="postPurchaseBillet()"
+                            mat-raised-button>Next</button>
+
+                        <button *ngIf="client.address == null" class="next" data-toggle="modal"
+                            data-target="#exampleModalCenter" mat-raised-button>Next</button>
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="saved-cards">
+                                            <div class="row row-1 address">
+                                                <h4 class="h4">Not so fast</h4>
+                                                <p class="p">
+                                                    You do not have any address registered :c
+                                                </p>
+                                                <button mat-raised-button routerLink="/client" data-dismiss="modal"
+                                                    class="btn-address">Add Address</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

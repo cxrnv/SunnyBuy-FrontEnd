@@ -14,53 +14,49 @@
                     </h5>
                 </div>
 
-                <div formGroupName="clientData">
+                <div>
                     <p class="client_Information">
                         CLIENT INFORMATION
                     </p>
 
-                    <div class="form-clientData">
-                        <form class="form" [formGroup]="form" (ngSubmit)="saveEditClient()">
-                            <div class="form-row">
-                                <div class="form-group col-md-5">
-                                    <label for="inputName4">Name</label>
-                                    <input type="text" class="form-control" placeholder="{{client.name}}"
-                                        formControlName="name">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label>Email</label>
-                                    <input type="text" class="form-control" id="inputEmail4" formControlName="email"
-                                        placeholder="{{client.email}}">
-                                </div>
-                                <div class="form-group col-md-5">
-                                    <label for="inputPassword4">Password</label>
-                                    <input type="password" class="form-control"  placeholder="{{client.password | password }}" formControlName="password">
-                                </div>
-                                <div class="form-group col-md-6">
-                                </div>
-                                <div class="form-group col-md-5">
-                                    <label for="inputPassword4">Cpf</label>
-                                    <input type="password" class="form-control" id="inputPassword4"
-                                        placeholder="{{client.clientCpf}}" formControlName="cpf">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Phone number</label>
-                                    <input type="password" class="form-control" id="inputPassword4"
-                                        placeholder="{{client.phone}}" formControlName="phone">
-                                </div>
-                                <div class="form-group col-md-4">
-                                </div>
-                                <div class="form-group col-md-11">
-                                    <label for="inputPassword4">Address</label>
-                                    <input type="password" class="form-control" id="inputPassword4"
-                                        placeholder="{{client.address}}" formControlName="address">
-                                </div>
-                            </div>
-                        </form>
-                        <!-- End of-->
 
-                        <button mat-raised-button class="btn-edit-account" type="submit">Edit profile</button>
-                        <button mat-raised-button class="btn-disable-account">Disable account</button>
+
+
+                    <div class="form-clientData">
+
+                        <form class="form" [formGroup]="formEdit" autocomplete="off">
+                            <mat-form-field class="form__input">
+                                <input name="name" matInput placeholder="Full name" type="text" formControlName="name">
+                            </mat-form-field>
+                            <mat-form-field class="form__input">
+                                <input name="email" matInput placeholder="Email Address" type="email"
+                                    formControlName="email">
+                            </mat-form-field>
+
+                            <mat-form-field class="form__input">
+                                <input name="password" matInput placeholder="Password" type="password"
+                                    formControlName="password">
+                            </mat-form-field>
+
+                            <mat-form-field class="form__input">
+                                <input name="clientCpf" matInput placeholder="Cpf" type="text"
+                                    formControlName="clientCpf">
+                                <mat-error>Cpf must have 11 characters</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field class="form__input">
+                                <input name="phone" matInput placeholder="Phone" type="text" formControlName="phone">
+                                <mat-error>Number phone must have 11 characters</mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="form__input address">
+                                <input name="address" matInput placeholder="Address" type="text"
+                                    formControlName="address">
+                            </mat-form-field>
+                            <hr>
+                            <button mat-raised-button class="btn-edit-account" type="submit"
+                                (click)="saveEditClient()">Edit profile</button>
+                            <button mat-raised-button class="btn-disable-account" ty>Disable account</button>
+                        </form>
                     </div>
                 </div>
 

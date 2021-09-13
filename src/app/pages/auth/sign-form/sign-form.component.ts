@@ -12,30 +12,27 @@ import { Router } from '@angular/router';
 export class SignFormComponent implements OnInit {
 
   form: FormGroup = null;
-  client: Client;
-  
-  constructor(private clientService : ClientService,  private route: Router) { }
+  client: Client = {} as Client;
 
-  public ngOnInit(): void 
-  {
+  constructor(private clientService: ClientService, private route: Router) { }
+
+  public ngOnInit(): void {
     this.form = this.createSignUp();
   }
 
-  createSignUp() : FormGroup
-  {
+  createSignUp(): FormGroup {
     return new FormGroup
-    (
-      {
-        name: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(80)]),
-        email: new FormControl(null, [Validators.email, Validators.required]),
-        password: new FormControl(null, [Validators.minLength(4), Validators.maxLength(50)]), 
-      }
-    )
+      (
+        {
+          name: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(80)]),
+          email: new FormControl(null, [Validators.email, Validators.required]),
+          password: new FormControl(null, [Validators.minLength(4), Validators.maxLength(50)]),
+        }
+      )
   }
 
-  saveSignUp()
-  {
-    const model = 
+  saveSignUp() {
+    const model =
     {
       name: this.form.get('name').value,
       email: this.form.get('email').value,
@@ -43,14 +40,13 @@ export class SignFormComponent implements OnInit {
     }
 
     this.clientService.postClient(model)
-    .subscribe(x => 
-      {
-        if(x){
+      .subscribe(x => {
+        if (x) {
           this.clientService.showMessageSuccess('Operation executed successfully')
           this.route.navigate(['/login']);
           // window.location.reload();
         }
-        else{
+        else {
           this.clientService.showMessageError('Occurred an error while creating a new user')
         }
       });

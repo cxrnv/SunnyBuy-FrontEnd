@@ -52,6 +52,30 @@ img{
     float: left;
 }
 
+.search
+{
+    margin-left: 0.84%;
+    width: 30%;
+    top: 53px;
+    text-align: left;
+    z-index: 2;
+    color: black;
+    background-color: #ffffff;
+    position: absolute;
+    padding-left: 1%;
+}
+
+td
+{
+    margin-top: 10px;
+    font-weight: 300;
+}
+
+td:hover
+{
+    background-color: #f0aee7;
+}
+
 .material-icons{
     cursor: default;
     color: white;
@@ -60,7 +84,7 @@ img{
 
 .material-icons:hover{
     cursor: default;
-    color: rgb(240, 174, 231);
+    color: #f0aee7;
     margin-left: 6%;
 }
 

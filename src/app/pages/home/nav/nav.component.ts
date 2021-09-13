@@ -11,7 +11,7 @@ import { GetProduct } from '../../products/models/product.model';
 })
 export class NavComponent implements OnInit {
   
-  productsName = '';
+  searchText;
   products : GetProduct[]; 
   count : CountCartModel = {} as CountCartModel;
 

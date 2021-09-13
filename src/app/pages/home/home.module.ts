@@ -9,9 +9,11 @@ import { NavComponent } from './nav/nav.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { HeaderComponent } from './header/header.component';
 import {MatMenuModule} from '@angular/material/menu';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
+    Ng2SearchPipeModule,
     CommonModule,
     RouterModule,
     SearchModule,

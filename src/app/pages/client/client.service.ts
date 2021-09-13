@@ -66,6 +66,11 @@ export class ClientService
     return this.login(model);
   }
 
+  public editClient(model: { clientId: number, clientCpf: string, name: string, email: string, password: string, address: string, phone: string})
+  {
+    return this._editClient(model);
+  }
+
   public getClient()
   {
     return this._getClient();
@@ -76,6 +81,15 @@ export class ClientService
   {
     console.log(apiUrl)
     return this.request.post<boolean>(apiUrl + '/Client/', model)
+    .pipe(
+      take(1)
+    );
+  } 
+
+  private _editClient(model: { clientId: number, clientCpf: string, name: string, email: string, password: string, address: string, phone: string}): Observable<boolean>
+  {
+    console.log("edit")
+    return this.request.post<boolean>(apiUrl + '/Client/edit/', model)
     .pipe(
       take(1)
     );

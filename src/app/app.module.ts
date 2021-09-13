@@ -35,9 +35,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
-import { SearchModule } from './core/search/search.module';
+import { SearchModule } from './core/pipes/search/search.module';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { PasswordModule } from './core/password/password.module';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
   ],
   
   imports: [
+    PasswordModule,
     NgxQRCodeModule,
     MatSnackBarModule,
     BrowserModule,

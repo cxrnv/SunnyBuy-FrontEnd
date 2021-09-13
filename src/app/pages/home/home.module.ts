@@ -1,5 +1,5 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SearchModule } from './../../core/search/search.module';
+import { SearchModule } from '../../core/pipes/search/search.module';
 import { RouterModule } from '@angular/router';
 import { CategoryComponent } from './category/category.component';
 import { FooterComponent } from './footer/footer.component';
@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { NavComponent } from './nav/nav.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { HeaderComponent } from './header/header.component';
-
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   imports: [
@@ -16,7 +16,8 @@ import { HeaderComponent } from './header/header.component';
     RouterModule,
     SearchModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatMenuModule
   ],
   declarations: [
       NavComponent,

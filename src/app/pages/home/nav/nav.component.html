@@ -1,43 +1,57 @@
 <div class="nav-bar">
     <div class="nav-icon">
-        <img src="assets/icon/mini_logo.png" alt="">
+        <img class="icon-SB" src="assets/icon/mini_logo.png" alt="">
     </div>
     <div class="nav-title">
         <h4 routerLink="">SunnyBuy</h4>
     </div>
     <div class="nav-search">
         <form class="form-inline active-cyan-3 active-cyan-4">
-            <input class="form-control form-control-sm ml-3 w-75" name="search" [(ngModel)]="searchText" type="text" placeholder="Search" aria-label="Search">
-            
+            <input class="form-control form-control-sm ml-3 w-75" name="search" [(ngModel)]="searchText" type="text"
+                placeholder="Search" aria-label="Search">
+
             <div class="search" *ngIf="searchText">
                 <tbody>
-                <tr *ngFor="let p of products | filter:searchText">
-                  <td routerLink = "/products/detail/{{p.productId}}">
-                      <p>
-                          <i>
-                              {{p.name}}
-                          </i>
-                      </p>
-                    </td>
-                </tr>
+                    <tr *ngFor="let p of products | filter:searchText">
+                        <td routerLink="/products/detail/{{p.productId}}">
+                            <p>
+                                <i>
+                                    {{p.name}}
+                                </i>
+                            </p>
+                        </td>
+                    </tr>
                 </tbody>
-              </div>
+            </div>
         </form>
     </div>
     <div class="nav-user_options">
-        <span routerLink="/client" class="material-icons user">account_circle</span>
-        <div routerLink="/cart" class="material-icons cart">
-            <div class="cart-basket">
-                <h6 class="count">
-                    {{count}}
-                </h6>
+        <div class="profile-card">
+            <div routerLink="/cart" class="material-icons cart">
+                <div class="cart-basket">
+                    <h6 class="count">
+                        {{count}}
+                    </h6>
+                </div>
+                shopping_cart
             </div>
-            shopping_cart
+
+            <div class="icon">
+
+                <img mat-button [matMenuTriggerFor]="menu" class="profile-picture" [src]="client.image" alt="">
+                <img mat-button [matMenuTriggerFor]="menu" src="assets/profile/img-default/icon.png" *ngIf="client.image == null">
+                <mat-menu #menu="matMenu"  class="customize">
+                        <p routerLink="/client" mat-menu-item>Profile</p>
+                        <p routerLink="/auth" mat-menu-item>Logout</p>
+                    </mat-menu>
+            </div>
+
         </div>
-        <span routerLink="/help" class="material-icons help">help_outline</span>
-        <span class="material-icons" [matMenuTriggerFor]="animals"> logout </span>
+        <!-- 
+        <!-- <span routerLink="/help" class="material-icons help">help_outline</span> -->
+        <!-- <span class="material-icons" [matMenuTriggerFor]="animals"> logout </span>
         <mat-menu #animals="matMenu">
             <button routerLink="/auth" mat-menu-item>Logout</button>
-        </mat-menu>
+        </mat-menu> -->
     </div>
 </div>

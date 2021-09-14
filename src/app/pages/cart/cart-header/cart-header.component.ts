@@ -21,20 +21,13 @@ export class CartHeaderComponent implements OnInit {
     this.cartService.getProductsCart().subscribe();
     this.cartService.products
     .subscribe(products => this.cart = products);
-    // this.total();
-   
+       
     this.cartService.totalCart().subscribe()
     this.cartService.total.subscribe(x => 
       {
         this.totalCart = x
       })
   }
-
-  // total()
-  // {
-  //   return this.cartService.totalCart()
-  //   .subscribe(x => this.totalCart = +x);
-  // }
 
    delete(cartId: number)
   {

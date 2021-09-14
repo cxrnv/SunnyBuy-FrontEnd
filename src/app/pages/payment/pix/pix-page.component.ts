@@ -1,6 +1,6 @@
-import { Guid } from 'guid-typescript';
-import { Component, OnInit } from '@angular/core';
 import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
+import { Component, OnInit } from '@angular/core';
+import { Guid } from 'guid-typescript';
 import { CartService } from '../../cart/cart.service';
 import { ClientService } from '../../client/client.service';
 import { Client } from '../../client/models/client.model';

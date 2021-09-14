@@ -14,124 +14,109 @@ import { PaymentService } from '../payment.service';
 })
 export class CreditcardPageComponent implements OnInit {
 
-  formCard     : FormGroup = null;
-  client       : Client = {} as Client;
-  cards        : CreditCard[];
+  formCard: FormGroup = null;
+  client: Client = {} as Client;
+  cards: CreditCard[];
 
-  constructor( private route: Router, private paymentService: PaymentService, private clientService: ClientService, private purchaseService: PurchaseService) { }
+  constructor(private route: Router, private paymentService: PaymentService, private clientService: ClientService, private purchaseService: PurchaseService) { }
 
   ngOnInit(): void {
     this.getClient();
     this.getExistingsCards();
+    this.paymentService.creditCard
+    .subscribe(card => this.cards = card);
+
     this.formCard = this.createAddCard();
   }
 
-  getExistingsCards()
-  {
+  getExistingsCards() {
     return this.paymentService.existingCards()
-    .subscribe(x => 
-      {
+      .subscribe(x => {
         this.cards = x
-        console.log(x)
       })
   }
 
-  getClient()
-  {
+  getClient() {
     return this.clientService.getClient()
-    .subscribe(data => 
-      {
+      .subscribe(data => {
         this.client = data;
       })
   }
 
-  createAddCard() : FormGroup
-  {
+  createAddCard(): FormGroup {
     return new FormGroup
-    (
-      {
-        operator : new FormControl(null),
-        number: new FormControl(null, [Validators.minLength(16), Validators.maxLength(16)]),
-        dueDate: new FormControl(null, [Validators.maxLength(5)]),
-        securityCode: new FormControl(null, [Validators.maxLength(3)]),
-      }
-    )
+      (
+        {
+          operator: new FormControl(null),
+          number: new FormControl(null, [Validators.minLength(16), Validators.maxLength(16)]),
+          dueDate: new FormControl(null, [Validators.maxLength(5)]),
+          securityCode: new FormControl(null, [Validators.maxLength(3)]),
+        }
+      )
   }
 
-  addCard()
-  {
-    const model = 
+  addCard() {
+    const model =
     {
-      clientId : this.clientService.getClientId(),
-      operator : this.formCard.get('operator').value,
-      number : this.formCard.get('number').value,
-      dueDate : this.formCard.get('dueDate').value,
-      securityCode:  this.formCard.get('securityCode').value,
-    }  
+      clientId: this.clientService.getClientId(),
+      operator: this.formCard.get('operator').value,
+      number: this.formCard.get('number').value,
+      dueDate: this.formCard.get('dueDate').value,
+      securityCode: this.formCard.get('securityCode').value,
+    }
 
     this.paymentService.postCreditCard(model)
-    .subscribe(x => 
-      {
-        if (x)
-        {
-            this.clientService.showMessageSuccess('Credit card added')
+      .subscribe(x => {
+        if (x) {
+          this.clientService.showMessageSuccess('Credit card added')
         }
-        else
-        {
+        else {
           this.clientService.showMessageError("Coudn't add the card")
         }
       })
   }
 
-  deleteCard(creditCardId: number)
-  {
-    const model = 
+  deleteCard(creditCardId: number) {
+    const model =
     {
-      clientId     : this.clientService.getClientId(),
-      creditCardId : creditCardId,
-      deleted      : true,
+      clientId: this.clientService.getClientId(),
+      creditCardId: creditCardId,
+      deleted: true,
     }
     return this.paymentService
       .putCreditCard(model)
       .subscribe
       (
-        x => 
-        {
-          if (x)
-          {
+        x => {
+          if (x) {
             this.clientService.showMessageSuccess('Credit card deleted')
           }
-          else
-          {
+          else {
             this.clientService.showMessageError("Coudn't delete the card")
           }
         }
       );
   }
 
-  postPurchase(creditCardId: number)
-  {
-    const model = 
+  postPurchase(creditCardId: number) {
+    const model =
     {
-      clientId         : this.clientService.getClientId(),
-      creditCardId     : creditCardId,
-      paymentTypeEnum  : 1
+      clientId: this.clientService.getClientId(),
+      creditCardId: creditCardId,
+      paymentTypeEnum: 1
     }
 
     return this.purchaseService.postPurchase(model)
-    .subscribe
-    (
-      x => 
-      { 
-        if(x)
-        {
-          this.route.navigate(['/purchase/confirm']);
+      .subscribe
+      (
+        x => {
+          if (x) {
+            this.route.navigate(['/purchase/confirm']);
+          }
+          else {
+            console.log("false")
+          }
         }
-        else
-        {
-          console.log("false")
-        }
-      }  
-    ); 
+      );
   }
 }

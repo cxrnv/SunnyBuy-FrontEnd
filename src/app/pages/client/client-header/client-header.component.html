@@ -18,10 +18,6 @@
                     <p class="client_Information">
                         CLIENT INFORMATION
                     </p>
-
-
-
-
                     <div class="form-clientData">
 
                         <form class="form" [formGroup]="formEdit" autocomplete="off" disabled>
@@ -55,7 +51,7 @@
                             <hr>
                             <button mat-raised-button class="btn-edit-account" type="button"
                                 (click)="enableEditClient()">Edit profile</button>
-                            <button mat-raised-button class="btn-edit-account" type="submit"
+                            <button mat-raised-button class="btn-save-account" type="submit"
                                 (click)="saveEditClient()">Save profile</button>
                             <button mat-raised-button class="btn-disable-account" ty>Disable account</button>
                         </form>
@@ -65,8 +61,18 @@
             </div>
             <div class="profile">
                 <div class="modal-picture-profile">
-                    <input #Image type="file" (change)="handleFileInput($event.target.files)" />
-                    <img class="profile_picture" [src]="client.image" alt="img_profile">
+                    <div class="picture-card">
+                        <img class="profile_picture" [src]="client.image" alt="img_profile">
+                        <img class="profile_picture" src="https://www.kindpng.com/picc/m/10-104902_simple-user-icon-user-icon-white-png-transparent.png" *ngIf="client.image == null">
+                    </div>
+                    <hr>
+                    <button mat-raised-button class="btn-image">
+                        <label>
+                            <input type="file" (change)="handleFileInput($event.target.files)" />
+                            Edit profile photo
+                        </label>
+                    </button>
+
                 </div>
             </div>
         </div>

@@ -3,6 +3,8 @@ import { CountCartModel } from './../../cart/models/count-cart.model';
 import { CartService } from './../../cart/cart.service';
 import { Component, OnInit } from '@angular/core';
 import { GetProduct } from '../../products/models/product.model';
+import { ClientService } from '../../client/client.service';
+import { Client } from '../../client/models/client.model';
 
 @Component({
   selector: 'app-nav',
@@ -11,11 +13,15 @@ import { GetProduct } from '../../products/models/product.model';
 })
 export class NavComponent implements OnInit {
   
+  client : Client = {} as Client;
   searchText;
   products : GetProduct[]; 
   count : CountCartModel = {} as CountCartModel;
 
-  constructor(private cartService: CartService, private productsService: ProductsService) { }
+  constructor(
+    private clientService: ClientService,
+    private cartService: CartService, 
+    private productsService: ProductsService) { }
 
   ngOnInit(): void {
     this.cartService.countingCart().subscribe()
@@ -29,9 +35,7 @@ export class NavComponent implements OnInit {
       (
         x => { this.products = x}
       )
-
+    this.clientService.getClient().subscribe(x => this.client = x);
   }
-
-
 
 }

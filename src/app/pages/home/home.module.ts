@@ -1,3 +1,4 @@
+import { HomePageComponent } from './home-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchModule } from '../../core/pipes/search/search.module';
 import { RouterModule } from '@angular/router';
@@ -8,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { NavComponent } from './nav/nav.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { HeaderComponent } from './header/header.component';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
@@ -22,20 +23,22 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     MatMenuModule
   ],
   declarations: [
-      NavComponent,
-      FooterComponent,
-      CarouselComponent,
-      CategoryComponent,
-      HeaderComponent
+    HomePageComponent,
+    NavComponent,
+    FooterComponent,
+    CarouselComponent,
+    CategoryComponent,
+    HeaderComponent
   ],
-  exports: 
-  [
+  exports:
+    [
+      HomePageComponent,
       NavComponent,
       FooterComponent,
       CarouselComponent,
       CategoryComponent,
       HeaderComponent
-  ]
+    ]
 })
 
 export class HomeModule { }

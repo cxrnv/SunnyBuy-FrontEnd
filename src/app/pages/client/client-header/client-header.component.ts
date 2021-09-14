@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../client.service';
 import { Client } from '../models/client.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-header',
@@ -20,6 +20,8 @@ export class ClientHeaderComponent implements OnInit {
     this.formEdit = this.editClient();
     this.formEdit.disable();
     this.get();
+    this.clientService.client
+    .subscribe(client => this.client = client);
   }
 
   editClient(): FormGroup {
@@ -76,8 +78,6 @@ export class ClientHeaderComponent implements OnInit {
 
   handleFileInput(file: FileList) {
     this.fileToUpload = file.item(0);
-
-    //Show image preview
     let reader = new FileReader();
     reader.onload = (event: any) => {
       this.client.image = reader.result;
@@ -85,19 +85,11 @@ export class ClientHeaderComponent implements OnInit {
     reader.readAsDataURL(this.fileToUpload);
   }
 
-  editImage() {
-
-  }
-
   getBase64(event) {
-    let me = this;
     let file = event.target.files[0];
     let reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = function () {
-      //me.modelvalue = reader.result;      
-    };
-
+    reader.onload = function (){};
     reader.onerror = function (error) {
       console.log('Error: ', error);
     };

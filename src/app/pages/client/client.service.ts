@@ -13,7 +13,7 @@ const apiUrl = environment.apiUrl;
 })
 
 export class ClientService {
-  /* x Array */
+  
   private _client = new BehaviorSubject<Client>(null);
   public client = this._client.asObservable();
 
@@ -23,7 +23,6 @@ export class ClientService {
 
   constructor(private request: HttpClient, private snackBar: MatSnackBar) { }
 
-  /*------------------public------------------*/
   public showMessageAttention(message: string): void {
     const configuration = new MatSnackBarConfig();
     configuration.panelClass = ['snack-attention'];
@@ -75,7 +74,8 @@ export class ClientService {
         tap(client => this._client.next(client))
       );
   }
-  /*-----------------private-----------------*/
+ 
+
 
   private _postClient(model: { name: string, email: string, password: string }): Observable<boolean> {
     console.log(apiUrl)

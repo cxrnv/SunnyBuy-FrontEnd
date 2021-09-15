@@ -12,46 +12,44 @@ import { PurchaseService } from '../purchase.service';
   styleUrls: ['./confirm_purchase.component.scss']
 })
 export class Confirm_purchaseComponent implements OnInit {
-   
+  
+  totalCart: number;
   cart: GetCart[];
   purchase: Purchase = {} as Purchase;
-  
-  constructor(private purchaseService: PurchaseService, private clientService: ClientService,  private route: Router, private cartService: CartService) { }
 
-  ngOnInit(): void  
-  {
+  constructor(private purchaseService: PurchaseService, private clientService: ClientService, private route: Router, private cartService: CartService) { }
+
+  ngOnInit(): void {
     this.getPurchase();
     this.cartService.getProductsCart().subscribe();
 
+    this.cartService.totalCart().subscribe()
+    this.cartService.total.subscribe(x => {
+      this.totalCart = x
+    })
     this.cartService.products
-    .subscribe(products => this.cart = products);
+      .subscribe(products => this.cart = products);
   }
 
-  getPurchase()
-  {
+  getPurchase() {
     return this.purchaseService.getPurchase(this.clientService.getClientId())
-    .subscribe(data => 
-      {
-        console.log(data.paymentTypeEnum)
-        console.log(data)
+      .subscribe(data => {
         this.purchase = data;
       })
   }
 
-  confirmPurchase()
-  {
-   /*  this.purchaseService.postPurchase().subscribe
-    (
-      a => 
-    )
-    if ()
-    { */
-      this.clientService.showMessageSuccess("Purchase successfull");
-      this.route.navigate(['/purchase/complete']);
-    /* }else
-    {
-      this.clientService.showMessageError("Wasn't possible confirm purchase")
-    } */
-    
+  confirmPurchase() {
+    const model = {
+      clientId: this.clientService.getClientId(),
+      purchaseId: this.purchase.purchaseId
+
+    }
+
+    this.purchaseService.confirmPurchase(model)
+      .subscribe
+      (
+        this.route.navigate(['/purchase/complete'])
+      );
+
   }
 }

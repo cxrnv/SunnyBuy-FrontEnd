@@ -20,7 +20,7 @@
                     </p>
                     <div class="form-clientData">
 
-                        <form class="form" [formGroup]="formEdit" autocomplete="off" disabled>
+                        <form class="form-client" [formGroup]="formEdit" autocomplete="off" disabled>
                             <mat-form-field class="form__input">
                                 <input name="name" matInput placeholder="Full name" type="text" formControlName="name">
                             </mat-form-field>
@@ -49,16 +49,108 @@
                                     formControlName="address">
                             </mat-form-field>
                             <hr>
+
                             <button mat-raised-button class="btn-edit-account" type="button"
                                 (click)="enableEditClient()">Edit profile</button>
                             <button mat-raised-button class="btn-save-account" type="submit"
                                 (click)="saveEditClient()">Save profile</button>
                             <button mat-raised-button class="btn-disable-account" ty>Disable account</button>
+
+                            <hr>
                         </form>
                     </div>
+                    <div class="nav-myAccount">
+                        <h5>
+                            My cards
+                        </h5>
+                    </div>
+                    <p class="client_Information">
+                        CARDS INFORMATION
+                    </p>
+
+                    <div class="card-header">
+
+                        <form>
+                            <span id="card-header">
+                                <b>
+                                    SAVED CARDS:
+                                </b>
+                            </span>
+                            
+                            <div class="saved-cards">
+                                <div class="row row-1 cards" data-toggle="modal" data-target="#exampleModalCenter" *ngFor="let c of card">
+                                    <div class="col-2">
+                                        <img class="img-fluid" src="assets/payment/creditCard/operator/{{c.operator}}.png"/>
+                                    </div>
+                                    <div class="col-7">
+                                        <input class="card-input" type="text" disabled placeholder="{{(c.number | mask)}}">
+                                    </div>
+                                    <div class="button_delete" class="col-3 d-flex justify-content-center">
+                                         <a (click)="deleteCard(c.creditCardId)">Remove card</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <span id="card-header">Add new card:</span>
+                            
+                            <div class="row-1">
+                                <div class="row row-2">
+                                    <span id="card-inner">Card holder name</span>
+                                </div>
+                                <div class="row row-2" *ngIf="client.name">
+                                    <input class="input-add-card" disabled type="text" placeholder="{{client.name}}">
+                                </div>
+                            </div>
+
+                             <form class="form credit-card" [formGroup]="formCard" (ngSubmit)="addCard()">
+                                <div class="row three">
+                                    <div class="col-5">
+                                        <div class="row-1">
+                                            <mat-form-field>
+                                                <input id="input-add-card" matInput  placeholder="Card number" type="text" formControlName="number">
+                                                <br> 
+                                                <br>
+                                                <mat-error>Number phone must have 16 characters</mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div>
+                                            <div class="row row-2">
+                                                <span id="card-inner">Operator</span>
+                                            </div>
+                                            <input class="input-add-card" type="text" placeholder="Mastercard" formControlName="operator">
+                                        </div>
+                                    </div>
+            
+                                    <div class="col-2">
+                                        <div>
+                                            <div class="row row-2">
+                                                <span id="card-inner">Exp. date</span>
+                                            </div>
+                                            <input class="input-add-card" type="text" placeholder="00/00" formControlName="dueDate">
+                                        </div>
+                                    </div>
+            
+                                    <div class="col-2">
+                                        <div>
+                                            <div class="row row-2"> <span id="card-inner">CCV</span> </div>
+                                            <input class="input-add-card" type="text" placeholder="000" formControlName="securityCode">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" mat-raised-button class="btn-add d-flex mx-auto justify-content-center"><b>Add
+                                        card</b></button>
+                                <button mat-raised-button
+                                    class="btn cancel d-flex mx-auto justify-content-center"><b>Cancel</b></button>
+                            </form>
+                            </form>
+                        </div>                            
                 </div>
 
             </div>
+
             <div class="profile">
                 <div class="modal-picture-profile">
                     <div class="picture-card">

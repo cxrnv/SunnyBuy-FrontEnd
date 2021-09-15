@@ -1,7 +1,3 @@
-<div class="category-container">
-        <button routerLink="/products/product-card/1"> Computers </button>
-        <button routerLink="/products/product-card/2"> Notebooks </button>
-        <button routerLink="/products/product-card/3"> Acessories </button>
-        <button routerLink="/products/product-card/4"> Smartphones </button>
-        <button routerLink="/products/product-card/5"> Tablets </button>
+<div class="category-container" >        
+        <button *ngFor="let c of category" routerLink="/products/product-card/{{c.categoryEnum}}"> {{c.description}} </button>
 </div>

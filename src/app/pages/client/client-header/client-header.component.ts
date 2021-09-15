@@ -1,8 +1,9 @@
+import { CreditCard } from './../../payment/models/creditcard.model';
+import { PaymentService } from './../../payment/payment.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../client.service';
 import { Client } from '../models/client.model';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-header',
@@ -10,18 +11,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./client-header.component.scss']
 })
 export class ClientHeaderComponent implements OnInit {
+
+  formCard: FormGroup = null;
+  card : CreditCard[];
   fileToUpload: any;
   formEdit: FormGroup;
   client: Client = {} as Client;
 
-  constructor(private clientService: ClientService, private route: Router) { }
+  constructor(
+    private clientService: ClientService, 
+    private paymentService: PaymentService) { }
 
   ngOnInit(): void {
     this.formEdit = this.editClient();
     this.formEdit.disable();
     this.get();
+    this.formCard = this.createAddCard();
+    this.paymentService.creditCard
+    .subscribe(c => this.card = c);
     this.clientService.client
     .subscribe(client => this.client = client);
+    this.getCards();
   }
 
   editClient(): FormGroup {
@@ -93,5 +103,65 @@ export class ClientHeaderComponent implements OnInit {
     reader.onerror = function (error) {
       console.log('Error: ', error);
     };
+  }
+
+  getCards()
+  {
+    this.paymentService.existingCards().subscribe(x => this.card = x)
+  }
+
+  createAddCard(): FormGroup {
+    return new FormGroup
+      (
+        {
+          operator: new FormControl(null),
+          number: new FormControl(null, [Validators.minLength(16), Validators.maxLength(16)]),
+          dueDate: new FormControl(null, [Validators.maxLength(5)]),
+          securityCode: new FormControl(null, [Validators.maxLength(3)]),
+        }
+      )
+  }
+
+  addCard() {
+    const model =
+    {
+      clientId: this.clientService.getClientId(),
+      operator: this.formCard.get('operator').value,
+      number: this.formCard.get('number').value,
+      dueDate: this.formCard.get('dueDate').value,
+      securityCode: this.formCard.get('securityCode').value,
+    }
+
+    this.paymentService.postCreditCard(model)
+      .subscribe(x => {
+        if (x) {
+          this.clientService.showMessageSuccess('Credit card added')
+        }
+        else {
+          this.clientService.showMessageError("Coudn't add the card")
+        }
+      })
+  }
+
+  deleteCard(creditCardId: number) {
+    const model =
+    {
+      clientId: this.clientService.getClientId(),
+      creditCardId: creditCardId,
+      deleted: true,
+    }
+    return this.paymentService
+      .putCreditCard(model)
+      .subscribe
+      (
+        x => {
+          if (x) {
+            this.clientService.showMessageSuccess('Credit card deleted')
+          }
+          else {
+            this.clientService.showMessageError("Coudn't delete the card")
+          }
+        }
+      );
   }
 }

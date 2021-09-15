@@ -10,4 +10,5 @@ export interface GetCart
     deleted    : boolean;
     total      : number;
     count      : number;
+    sold       : boolean;
 }

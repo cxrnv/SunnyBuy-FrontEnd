@@ -1,10 +1,10 @@
-import { environment } from 'src/environments/environment';
-import { CreditCard } from './models/creditcard.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { take, switchMap, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { ClientService } from '../client/client.service';
+import { CreditCard } from './models/creditcard.model';
+import { take, switchMap, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 
 const apiUrl = environment.apiUrl;
 
@@ -18,8 +18,6 @@ export class PaymentService {
   public creditCard = this._creditCard.asObservable();
 
   constructor(private http: HttpClient, private clientService: ClientService) { }
-
-  /*------------------public------------------*/
 
   public postCreditCard(model: { clientId: number, dueDate: string, number: number, securityCode: string, operator: string }) {
     return this._postCreditCard(model)
@@ -44,10 +42,9 @@ export class PaymentService {
       );
   }
 
-  /*-----------------private-----------------*/
 
   private _postCreditCard(model: { clientId: number, dueDate: string, number: number, securityCode: string, operator: string }): Observable<boolean> {
-    return this.http.post<boolean>(apiUrl + '/CreditCard/', model)
+    return this.http.post<boolean>(apiUrl + '/creditCard/', model)
       .pipe(
         take(1)
       );
@@ -61,7 +58,6 @@ export class PaymentService {
       body: model
     };
 
-    console.log("put")
     return this.http.delete<boolean>(apiUrl + '/CreditCard/', options)
       .pipe
       (

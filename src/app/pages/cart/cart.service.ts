@@ -71,11 +71,11 @@ export class CartService {
         switchMap(() => this.totalCart())
       );
   }
-  /*-----------------private-----------------*/
+
 
   private _getCartProducts() {
     return this.request
-      .get<GetCart[]>(apiUrl + "/Cart/" + this.clientService.getClientId())
+      .get<GetCart[]>(apiUrl + "/cart/" + this.clientService.getClientId())
       .pipe
       (
         take(1)
@@ -85,7 +85,7 @@ export class CartService {
   private _postCart(model: { clientId: number, productId: number }): Observable<boolean> {
     console.log(apiUrl)
     return this.request
-      .post<boolean>(apiUrl + '/Cart/', model)
+      .post<boolean>(apiUrl + '/cart/', model)
       .pipe
       (
         take(1),
@@ -98,7 +98,7 @@ export class CartService {
 
   private _totalCart() {
     return this.request
-      .get<number>(apiUrl + "/Cart/total/" + this.clientService.getClientId())
+      .get<number>(apiUrl + "/cart/total/" + this.clientService.getClientId())
       .pipe
       (
         take(1)
@@ -108,7 +108,7 @@ export class CartService {
   private _countCart() 
   {
     return this.request
-      .get<CountCartModel>(apiUrl + "/Cart/count/" + this.clientService.getClientId())
+      .get<CountCartModel>(apiUrl + "/cart/count/" + this.clientService.getClientId())
       .pipe
       (
         take(1)
@@ -124,7 +124,7 @@ export class CartService {
     };
 
     return this.request
-      .delete<GetCart[]>(apiUrl + '/Cart/', options)
+      .delete<GetCart[]>(apiUrl + '/cart/', options)
       .pipe(
         take(1)
       );

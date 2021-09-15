@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { CreditCardMaskModule } from 'src/app/core/pipes/credit-card/CreditCardMask.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
+    CreditCardMaskModule,
   ],
   exports:
     [

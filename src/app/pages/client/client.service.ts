@@ -13,7 +13,10 @@ const apiUrl = environment.apiUrl;
 })
 
 export class ClientService {
-  
+
+  private _clients = new BehaviorSubject<Client[]>([]);
+  public clients = this._clients.asObservable();
+
   private _client = new BehaviorSubject<Client>(null);
   public client = this._client.asObservable();
 
@@ -55,8 +58,8 @@ export class ClientService {
     return this._postClient(model);
   }
 
-  public _login(model: { email: string, password: string }) {
-    return this.login(model);
+  public login(model: { email: string, password: string }) {
+    return this._login(model);
   }
 
   public editClient(model: { clientId: number, clientCpf: string, name: string, email: string, password: string, address: string, phone: string, image: string | ArrayBuffer }) {
@@ -74,11 +77,17 @@ export class ClientService {
         tap(client => this._client.next(client))
       );
   }
- 
 
+  public getClients(){
+    return this._getAllClients();
+  }
+
+
+  public disableClient(model: { clientId: number, disabled: boolean }) {
+    return this._disableClient(model);
+  }
 
   private _postClient(model: { name: string, email: string, password: string }): Observable<boolean> {
-    console.log(apiUrl)
     return this.request.post<boolean>(apiUrl + '/Client/', model)
       .pipe(
         take(1)
@@ -93,10 +102,17 @@ export class ClientService {
       );
   }
 
-  private login(model: { email: string, password: string }): Observable<number> {
+  private _login(model: { email: string, password: string }): Observable<number> {
     return this.request.post<number>(apiUrl + '/Client/login/', model)
       .pipe(
         tap(a => localStorage.setItem('clientId', a.toString())),
+        take(1)
+      );
+  }
+
+  private _disableClient(model: { clientId: number, disabled: boolean }): Observable<boolean> {
+    return this.request.put<boolean>(apiUrl + '/Client/disable/', model)
+      .pipe(
         take(1)
       );
   }
@@ -109,4 +125,14 @@ export class ClientService {
         take(1)
       )
   }
+
+  private _getAllClients() {
+    return this.request
+      .get<Client[]>(apiUrl + '/Client/clients')
+      .pipe
+      (
+        take(1)
+      )
+  }
+
 }

@@ -1,3 +1,5 @@
+import { DefaultComponent } from './pages/help/default/default.component';
+import { ChatComponent } from './pages/help/chat/chat.component';
 import { Confirm_purchaseComponent } from './pages/purchase/confirm_purchase/confirm_purchase.component';
 import { Purchase_completeComponent } from './pages/purchase/purchase_complete/purchase_complete.component';
 import { PaymentTypeChoosePageComponent } from './pages/payment/payment-type-choose-page.component';
@@ -29,7 +31,14 @@ const routes: Routes =
 
     { path: 'client', pathMatch: 'full', component: ClientPageComponent },
     { path: 'cart', pathMatch: 'full', component: CartPageComponent },
-    { path: 'help', component: HelpPageComponent },
+    {
+      path: 'help', component: HelpPageComponent,
+      children:
+        [
+          { path: 'default', component: DefaultComponent },
+          { path: 'chat', component: ChatComponent },
+        ]
+    },
     {
       path: 'payment', component: PaymentTypeChoosePageComponent,
       children:
@@ -40,12 +49,14 @@ const routes: Routes =
         ]
     },
 
-    { path: 'purchase', component: PurchaseComponent, 
+    {
+      path: 'purchase', component: PurchaseComponent,
       children:
-      [
-        { path: 'confirm', component: Confirm_purchaseComponent},
-        { path: 'complete', component: Purchase_completeComponent}
-      ]},
+        [
+          { path: 'confirm', component: Confirm_purchaseComponent },
+          { path: 'complete', component: Purchase_completeComponent }
+        ]
+    },
 
     {
       path: '**',

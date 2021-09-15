@@ -1,0 +1,32 @@
+ <div class="chat-header">
+   <!-- Start : Chat Header  -->
+   <div class="chat-grid"> 
+     <div class="menu">
+       <div class="name">Group Chat</div>
+     </div>
+     <ol class="chat" #scrollMe [scrollTop]="scrollMe.scrollHeight" *ngIf="messages.length > 0">
+      <li [ngClass]="{'self': message.userId == user , 'other': message.userId != user }" *ngFor="let message of messages">
+          <div class="msg">
+              <div class="user">{{ message.userId.username }}</div>
+              <p> {{ message.message }} </p>
+              <time>{{ message.time }}</time>
+          </div>
+      </li>
+    </ol>
+     
+    <div class="type-zone">
+      <form>
+        <textarea type="text" #msgInput (keydown.enter)="sendMessage(msgInput.value);false;msgInput.value='';" placeholder="Say something"></textarea><input type="submit" class="send" value=""/>
+    </form>
+    </div>
+    
+   </div>
+   <div class="menu-clients"><div class="name">Clients</div></div>
+   <div class="clients-grid">
+      <div class="client-card" *ngFor="let client of clients"> 
+        <div class="card-img"><img class="icon" src="{{client.image}}" alt=""></div>
+        <div class="card-name">{{client.name}}</div>
+      
+    </div>
+   </div>
+</div>

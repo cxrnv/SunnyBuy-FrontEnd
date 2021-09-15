@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { CreditCard } from './../../payment/models/creditcard.model';
 import { PaymentService } from './../../payment/payment.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -13,14 +14,15 @@ import { Client } from '../models/client.model';
 export class ClientHeaderComponent implements OnInit {
 
   formCard: FormGroup = null;
-  card : CreditCard[];
+  card: CreditCard[];
   fileToUpload: any;
   formEdit: FormGroup;
   client: Client = {} as Client;
 
   constructor(
-    private clientService: ClientService, 
-    private paymentService: PaymentService) { }
+    private clientService: ClientService,
+    private paymentService: PaymentService,
+    private route: Router) { }
 
   ngOnInit(): void {
     this.formEdit = this.editClient();
@@ -28,9 +30,9 @@ export class ClientHeaderComponent implements OnInit {
     this.get();
     this.formCard = this.createAddCard();
     this.paymentService.creditCard
-    .subscribe(c => this.card = c);
+      .subscribe(c => this.card = c);
     this.clientService.client
-    .subscribe(client => this.client = client);
+      .subscribe(client => this.client = client);
     this.getCards();
   }
 
@@ -48,7 +50,7 @@ export class ClientHeaderComponent implements OnInit {
       )
   }
 
-  enableEditClient(){
+  enableEditClient() {
     this.formEdit.enable();
   }
 
@@ -99,14 +101,13 @@ export class ClientHeaderComponent implements OnInit {
     let file = event.target.files[0];
     let reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = function (){};
+    reader.onload = function () { };
     reader.onerror = function (error) {
       console.log('Error: ', error);
     };
   }
 
-  getCards()
-  {
+  getCards() {
     this.paymentService.existingCards().subscribe(x => this.card = x)
   }
 
@@ -163,5 +164,25 @@ export class ClientHeaderComponent implements OnInit {
           }
         }
       );
+  }
+
+  disableClient() {
+    const model = {
+      clientId: this.clientService.getClientId(),
+      disabled: true
+    }
+
+    this.clientService
+      .disableClient(model)
+      .subscribe
+      (x => 
+        {
+          if (x)
+          {
+            console.log(x);
+            this.route.navigateByUrl('/auth');
+          }else
+          console.log(x)
+        });
   }
 }

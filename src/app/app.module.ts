@@ -14,7 +14,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './pages/auth/auth.module';
-import { HelpPageComponent } from './pages/help/help-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { NgModule } from '@angular/core';
@@ -37,9 +36,9 @@ import { ProductsModule } from './pages/products/product.module';
 
   imports: [
     AuthModule,
-    HelpModule,
     AppRoutingModule,
     ClientModule,
+    HelpModule,
     CartModule,
     PasswordModule,
     MatSnackBarModule,

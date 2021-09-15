@@ -1,0 +1,120 @@
+.help-header {
+    border-radius: 25px;
+    margin: auto;
+    width: 70%;
+    height: 700px;
+    background-color: white;
+    overflow: hidden;
+}
+
+nav {
+    width: 100%;
+    height: 90px;
+    display: flex;
+}
+
+.grid-blank
+{
+    float: right;
+    width: 38%;
+}
+
+.grid-links
+{
+    border-radius: 50px 0px 0px 50px;
+    display: flex;
+    float: right;
+    width: 62%;
+    background-color: #a37f5ede;
+}
+
+.links {
+    cursor: pointer;
+    align-items: center;
+    align-content: center;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    text-align: center;
+    vertical-align: middle;
+}
+
+header {
+    width: 100%;
+    height: 100%;
+}
+
+.grid-1 {
+    cursor: pointer;
+    width: 50%;
+    height: 100%;
+    float: left;
+    background-repeat: no-repeat;
+    background: #efe7e0;
+    overflow: hidden;
+    padding-top: 8%;
+}
+
+.image {
+    padding: 1%;
+    border-radius: 100% 0px 0px 100%;
+    border: 0 solid red;
+    transform: rotate(-10deg);
+    width: 100%;
+}
+
+.grid-2 {
+    cursor: pointer;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    overflow: hidden;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    padding-bottom: 7%;
+}
+
+.contact-us
+{
+    vertical-align: middle;
+    width: 80%;
+    height: 60%;
+}
+
+.title-c-u
+{
+    padding-top: 1%;
+    padding-left: 10%;
+    text-align: left;
+    width: 100%;
+    height: 11%;
+    overflow: hidden;
+}
+
+.logo-c-u
+{
+    padding-top: 3%;
+    padding-left: 15%;
+    padding-right: 15%;
+    width: 100%;
+    height: 89%;
+    text-align: left;
+}
+
+p
+{
+    font-weight: 300;
+    font-size: 1.2em;
+}
+
+button
+{
+    margin-left: 20%;
+    width: 40%;
+    color: white;
+    background-color: crimson;
+}

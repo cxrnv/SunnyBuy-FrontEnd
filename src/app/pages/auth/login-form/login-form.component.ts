@@ -41,7 +41,7 @@ export class LoginFormComponent implements OnInit
     }
 
     this.clientService
-    ._login(model)
+    .login(model)
     .subscribe(x =>
       {
         console.log(x)

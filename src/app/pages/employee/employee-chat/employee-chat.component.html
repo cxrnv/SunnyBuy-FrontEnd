@@ -1,0 +1,30 @@
+<div class="chat-grid">
+  <div class="menu">
+    <div class="name">
+      <p class="title-menu"><i>{{client.name}}</i></p>
+    </div>
+  </div>
+  <ol class="chat" style=" height: xyz;" #scrollMe [scrollTop]="scrollMe.scrollHeightt" *ngIf="messages.length > 0">
+    <li *ngFor="let message of messages">
+      <div class="msg-employee" *ngIf="message.personTypeEnum == 1">
+          <p>{{ message.description }} </p>
+        <time>{{ message.dateMessage }}</time>
+      </div>
+      <div class="msg-client" *ngIf="message.personTypeEnum == 2">
+        <!-- <p >{{client.name}}</p> -->
+        <p>{{ message.description }} </p>
+      <time>{{ message.dateMessage }}</time>
+    </div>
+    </li>
+  </ol>
+
+  <form class="form" [formGroup]="form" (ngSubmit)="sendMessage()">
+    <div class="form-actions">
+      <input class="input-msg" name="description" matInput placeholder="Send a message" formControlName="description">
+        <span class="material-icons" type="submit">
+          send 
+        </span>
+    </div>
+    <hr>
+  </form>
+</div>

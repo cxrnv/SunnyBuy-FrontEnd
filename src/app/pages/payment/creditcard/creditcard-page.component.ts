@@ -37,7 +37,7 @@ export class CreditcardPageComponent implements OnInit {
   }
 
   getClient() {
-    return this.clientService.getClient()
+    return this.clientService.getClientLoggedIn()
       .subscribe(data => {
         this.client = data;
       })

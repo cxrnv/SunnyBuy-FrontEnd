@@ -66,12 +66,20 @@ export class ClientService {
     return this._editClient(model)
       .pipe
       (
-        switchMap(() => this.getClient())
+        switchMap(() => this.getClientLoggedIn())
       );
   }
 
-  public getClient() {
-    return this._getClient()
+  public getClientLoggedIn() {
+    return this._getClientLoggedIn()
+      .pipe
+      (
+        tap(client => this._client.next(client))
+      );
+  }
+  
+  public getClient(clientId: number) {
+    return this._getClient(clientId)
       .pipe
       (
         tap(client => this._client.next(client))
@@ -80,6 +88,10 @@ export class ClientService {
 
   public getClients(){
     return this._getAllClients();
+  }
+
+  public getClientsChat(){
+    return this._getClientsChat();
   }
 
 
@@ -117,13 +129,32 @@ export class ClientService {
       );
   }
 
-  private _getClient() {
+  private _getClientLoggedIn() {
     return this.request
       .get<Client>(apiUrl + '/Client/' + localStorage.getItem('clientId'))
       .pipe
       (
         take(1)
       )
+  }
+
+  private _getClient(clientId: number) {
+    return this.request
+      .get<Client>(apiUrl + '/Client/' + clientId)
+      .pipe
+      (
+        take(1)
+      )
+  }
+
+  private _getClientsChat()
+  {
+    return this.request
+    .get<Client[]>(apiUrl + '/Client/clients-chat/')
+    .pipe
+    (
+      take(1)
+    )
   }
 
   private _getAllClients() {
@@ -134,5 +165,4 @@ export class ClientService {
         take(1)
       )
   }
-
 }

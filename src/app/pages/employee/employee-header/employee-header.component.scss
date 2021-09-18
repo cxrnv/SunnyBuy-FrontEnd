@@ -1,10 +1,17 @@
+
 .help-header {
     border-radius: 25px;
     margin: auto;
     width: 70%;
-    height: 700px;
+    height: 690px;
     background-color: white;
     overflow: hidden;
+    padding: 0;
+}
+
+h1
+{
+    text-transform: uppercase;
 }
 
 nav {
@@ -25,7 +32,7 @@ nav {
     display: flex;
     float: right;
     width: 62%;
-    background-color: #a37f5ede;
+    background-color: #1c91c7;
 }
 
 .links {
@@ -38,9 +45,16 @@ nav {
 }
 
 a {
+    color: white;
     text-align: center;
     vertical-align: middle;
 }
+
+a:hover{
+    color: rgb(2, 2, 70);
+    text-decoration: none;
+}
+
 
 header {
     width: 100%;
@@ -53,17 +67,15 @@ header {
     height: 100%;
     float: left;
     background-repeat: no-repeat;
-    background: #efe7e0;
+    background: #a7d9f0;
     overflow: hidden;
-    padding-top: 8%;
+    padding-top: 4.5%;
 }
 
 .image {
-    padding: 1%;
-    border-radius: 100% 0px 0px 100%;
-    border: 0 solid red;
     transform: rotate(-10deg);
     width: 100%;
+    margin-bottom: 30%;
 }
 
 .grid-2 {
@@ -117,22 +129,4 @@ button
     width: 40%;
     color: white;
     background-color: crimson;
-}
-
-.modal-header
-{
-    font-weight: 300;
-    margin: auto;
-    text-align: center;
-}
-
-.modal-body
-{
-    margin: auto;
-}
-
-.btn-cancel
-{
-    background-color: #5f0a0a;
-    margin: auto;
 }

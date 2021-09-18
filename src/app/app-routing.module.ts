@@ -1,3 +1,8 @@
+import { MessageComponent } from './pages/message/message.component';
+import { EmployeeChatComponent } from './pages/employee/employee-chat/employee-chat.component';
+import { EmployeeChatGridComponent } from './pages/employee/employee-chat-grid/employee-chat-grid.component';
+import { EmployeeHeaderComponent } from './pages/employee/employee-header/employee-header.component';
+import { EmployeeComponent } from './pages/employee/employee.component';
 import { DefaultComponent } from './pages/help/default/default.component';
 import { ChatComponent } from './pages/help/chat/chat.component';
 import { Confirm_purchaseComponent } from './pages/purchase/confirm_purchase/confirm_purchase.component';
@@ -20,6 +25,7 @@ import { PurchaseComponent } from './pages/purchase/purchase.component';
 const routes: Routes =
   [
     { path: '', pathMatch: 'full', component: HomePageComponent },
+    { path: 'messages', component: MessageComponent },
     {
       path: 'products', component: ProductsComponent,
       children:
@@ -36,7 +42,22 @@ const routes: Routes =
       children:
         [
           { path: 'default', component: DefaultComponent },
-          { path: 'chat', component: ChatComponent },
+          {
+            path: 'chat', component: ChatComponent
+          },
+        ]
+    },
+    {
+      path: 'employee-page', component: EmployeeComponent,
+      children:
+        [
+          { path: 'home', component: EmployeeHeaderComponent },
+          {
+            path: 'chat-page', component: EmployeeChatGridComponent, children:
+              [
+                { path: 'chat/:clientId', component: EmployeeChatComponent }
+              ]
+          },
         ]
     },
     {

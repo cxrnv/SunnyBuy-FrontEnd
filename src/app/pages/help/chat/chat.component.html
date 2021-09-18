@@ -1,32 +1,59 @@
- <div class="chat-header">
-   <!-- Start : Chat Header  -->
-   <div class="chat-grid"> 
-     <div class="menu">
-       <div class="name">Group Chat</div>
-     </div>
-     <ol class="chat" #scrollMe [scrollTop]="scrollMe.scrollHeight" *ngIf="messages.length > 0">
-      <li [ngClass]="{'self': message.userId == user , 'other': message.userId != user }" *ngFor="let message of messages">
-          <div class="msg">
-              <div class="user">{{ message.userId.username }}</div>
-              <p> {{ message.message }} </p>
-              <time>{{ message.time }}</time>
-          </div>
+<!-- <div class="chat-header">
+  <div class="chat-grid">
+    <div class="menu">
+      <div class="name">{{employee.name}}</div>
+    </div>
+    <ol class="chat" style=" height: xyz;" #scrollMe [scrollTop]="scrollMe.scrollHeightt" *ngIf="messages.length > 0">
+      <li 
+        *ngFor="let message of messages">
+        <div class="msg">
+          <div class="user">{{ message.userId.username }}</div>
+          <p> {{ message.message }} </p>
+          <time>{{ message.time }}</time>
+        </div>
       </li>
     </ol>
-     
-    <div class="type-zone">
-      <form>
-        <textarea type="text" #msgInput (keydown.enter)="sendMessage(msgInput.value);false;msgInput.value='';" placeholder="Say something"></textarea><input type="submit" class="send" value=""/>
+
+    <form class="form">
+      <div class="form-actions">
+        <input class="input-msg" name="description" matInput placeholder="Send a message" formControlName="description">
+          <span class="material-icons" type="submit">
+            send 
+          </span>
+      </div>
+      <hr>
     </form>
+  </div>
+</div> -->
+<div class="chat-header">
+  <div class="chat-grid">
+    <div class="menu">
+      <div class="name">
+        <p class="title-menu"><i>{{client.name}}</i></p>
+      </div>
     </div>
+    <ol class="chat" style=" height: xyz;" #scrollMe [scrollTop]="scrollMe.scrollHeightt" *ngIf="messages.length > 0">
+      <li *ngFor="let message of messages">
+        <div class="msg-employee" *ngIf="message.personTypeEnum == 1">
+          <p>{{ message.description }} </p>
+          <time>{{ message.dateMessage }}</time>
+        </div>
+        <div class="msg-client" *ngIf="message.personTypeEnum == 2">
+          <!-- <p >{{client.name}}</p> -->
+          <p>{{ message.description }} </p>
+          <time>{{ message.dateMessage }}</time>
+        </div>
+      </li>
+    </ol>
     
-   </div>
-   <div class="menu-clients"><div class="name">Clients</div></div>
-   <div class="clients-grid">
-      <div class="client-card" *ngFor="let client of clients"> 
-        <div class="card-img"><img class="icon" src="{{client.image}}" alt=""></div>
-        <div class="card-name">{{client.name}}</div>
-      
-    </div>
-   </div>
+    <form class="form" [formGroup]="form" (ngSubmit)="sendMessage()">
+      <div class="form-actions">
+        <input class="input-msg" name="description" matInput placeholder="Send a message" formControlName="description">
+        <span class="material-icons" type="submit">
+          send 
+        </span>
+      </div>
+      <hr>
+    </form>
+  </div>
 </div>

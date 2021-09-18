@@ -31,8 +31,10 @@ export class ClientHeaderComponent implements OnInit {
     this.formCard = this.createAddCard();
     this.paymentService.creditCard
       .subscribe(c => this.card = c);
+
     this.clientService.client
       .subscribe(client => this.client = client);
+      
     this.getCards();
   }
 
@@ -81,7 +83,7 @@ export class ClientHeaderComponent implements OnInit {
   }
 
   get() {
-    this.clientService.getClient()
+    this.clientService.getClientLoggedIn()
       .subscribe(data => {
         this.client = data;
         this.formEdit.patchValue(data);

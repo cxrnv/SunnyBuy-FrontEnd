@@ -1,0 +1,17 @@
+<div class="chat-header">
+  <router-outlet></router-outlet>
+  <div class="menu">
+    <div class="menu-clients">
+      <div class="name">Clients</div>
+    </div>
+  </div>
+  <div class="clients-grid" >
+    <div class="client-card" *ngFor="let client of clients">
+      <div class="card-img">
+        <img class="icon" src="{{client.image}}" alt="">
+      </div>
+      <div routerLink="./chat/{{client.clientId}}" class="card-name">{{client.name}}</div>
+      <div class="card-notification"><p class="notification">{{client.clientId}}</p></div>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+import { EmployeeFormComponent } from './employee-form/employee-form.component';
 import { SignFormComponent } from './sign-form/sign-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -14,7 +15,8 @@ import { NgModule } from '@angular/core';
   declarations: [
     SignFormComponent,
     AuthPageComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    EmployeeFormComponent
   ],
   imports: [
     CommonModule,

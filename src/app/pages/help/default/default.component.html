@@ -1,45 +1,63 @@
 <div class="help-header">
-  <nav>
-      <div class="grid-blank">
-      </div>
-      <div class="grid-links">
-          <div class="links">
-              <a routerLink="">
-                  Home
-              </a>
-          </div>
-          <div class="links">
-              <a routerLink="/client">
-                  Profile
-              </a>
-          </div>
-          <div class="links">
-              <a>
-                  About us
-              </a>
-          </div>
-      </div>
-  </nav>
-  <header>
-      <div class="grid-1">
-          <img class="image" src="./../../../assets/help/thisway.png" alt="">
-      </div>
-      <div class="grid-2">
-          <div class="contact-us">
-              <div class="title-c-u">
-                  <h1>CONTACT US</h1>
-              </div>
-              <div class="logo-c-u">
-                  <h3>SunnyBuy</h3>
-                  <p>How can we help you?<br>
-                      We are here to help you for anything you need :)
-                  </p>
-                  <hr>
-                  <button mat-raised-button (click)="goToChat()">
-                      Go to chat
-                  </button>
-              </div>
-          </div>
-      </div>
-  </header>
+    <nav>
+        <div class="grid-blank">
+        </div>
+        <div class="grid-links">
+            <div class="links">
+                <a routerLink="">
+                    Home
+                </a>
+            </div>
+            <div class="links">
+                <a routerLink="/client">
+                    Profile
+                </a>
+            </div>
+            <div class="links">
+                <a>
+                    About us
+                </a>
+            </div>
+        </div>
+    </nav>
+    <header>
+        <div class="grid-1">
+            <img class="image" src="./../../../assets/help/thisway.png" alt="">
+        </div>
+        <div class="grid-2">
+            <div class="contact-us">
+                <div class="title-c-u">
+                    <h1>CONTACT US</h1>
+                </div>
+                <div class="logo-c-u">
+                    <h3>SunnyBuy</h3>
+                    <p>How can we help you?<br>
+                        We are here to help you for anything you need :)
+                    </p>
+                    <hr>
+                    <button mat-raised-button type="button" class="btn btn-secondary"
+                    data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter">Go to chat</button>
+                   
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5>Choose the helpmate</h5>
+                                </div>
+                                <div class="modal-body" (click)="goToChat()" data-dismiss="modal">
+                                    {{employee.name}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button mat-raised-button type="button" class="btn-cancel btn-secondary"
+                                        data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 </div>

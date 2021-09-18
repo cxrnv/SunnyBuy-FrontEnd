@@ -1,5 +1,8 @@
+import { EmployeeService } from './../../employee/employee.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { ClientService } from '../../client/client.service';
+import { Employee } from '../../employee/models/employee.model';
 
 @Component({
   selector: 'app-default',
@@ -8,17 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DefaultComponent implements OnInit {
 
-  constructor
-  (
-    private route: Router
-  ) { }
+  employee: Employee ;
 
+  constructor(
+    private route: Router,
+    private clientService: ClientService,
+    private employeeService: EmployeeService) { }
 
   ngOnInit() {
+    this.employeeService.getEmployee().subscribe(
+      x => {
+        this.employee = x
+        console.log(x)
+      })
   }
 
-  goToChat()
-  {
+  goToChat() {
     this.route.navigateByUrl('help/chat');
   }
 }

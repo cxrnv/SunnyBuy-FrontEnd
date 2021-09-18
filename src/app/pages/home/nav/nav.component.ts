@@ -35,7 +35,7 @@ export class NavComponent implements OnInit {
       (
         x => { this.products = x}
       )
-    this.clientService.getClient().subscribe(x => this.client = x);
+    this.clientService.getClientLoggedIn().subscribe(x => this.client = x);
   }
 
 }

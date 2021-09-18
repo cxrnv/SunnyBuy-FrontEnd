@@ -1,24 +1,23 @@
-import { Employee } from './../../employee/models/employee.model';
-import { Client } from 'src/app/pages/client/models/client.model';
-import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ClientService } from '../../client/client.service';
-import { EmployeeService } from '../../employee/employee.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import { switchMap } from 'rxjs/operators';
+import { EmployeeService } from './../employee.service';
+import { Client } from 'src/app/pages/client/models/client.model';
+import { Message } from './../../message/models/message.model';
 import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
+import { ClientService } from '../../client/client.service';
+import { switchMap } from 'rxjs/operators';
 import { MessageService } from '../../message/message.service';
-import { Message } from '../../message/models/message.model';
 
 @Component({
-  selector: 'app-chat',
-  templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.scss']
+  selector: 'app-employee-chat',
+  templateUrl: './employee-chat.component.html',
+  styleUrls: ['./employee-chat.component.scss']
 })
-export class ChatComponent implements OnInit, AfterViewChecked {
 
+export class EmployeeChatComponent implements OnInit, AfterViewChecked {
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
-  employee : Employee = {} as Employee;
+
   form: FormGroup = null;
   client: Client = {} as Client;
   clientId: any;
@@ -33,10 +32,32 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   ) { }
 
   ngOnInit() {
-   
-    this.messagesService.getMessages(this.clientService.getClientId()).subscribe(x=> this.messages = x );
+    this.route.params
+      .pipe(
+        switchMap(
+          params => {
+            this.clientId = params['clientId'];
+            return this.messagesService.getMessages(this.clientId)
+          }))
+      .subscribe(data => this.messages = data);
+
+    this.route.params
+      .pipe(
+        switchMap(
+          params => {
+            this.clientId = params['clientId'];
+            return this.clientService.getClient(this.clientId)
+
+          }))
+      .subscribe(data => this.client = data);
+
+    this.clientService.getClients()
+      .subscribe(x => {
+        this.clients = x
+      })
+
     this.form = this.createMessage();
-    this.employeeService.getEmployee();
+
   }
 
   createMessage(): FormGroup {
@@ -61,10 +82,10 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   sendMessage() {
     const model =
     {
-      clientId: this.clientService.getClientId(),
-      employeeId: 1,
+      clientId: this.clientId,
+      employeeId: this.employeeService.getEmployeeId(),
       description: this.form.get('description').value,
-      personTypeEnum: 2
+      personTypeEnum: 1
     }
 
     this.messagesService

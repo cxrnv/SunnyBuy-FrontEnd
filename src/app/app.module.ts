@@ -1,3 +1,4 @@
+import { EmployeeModule } from './pages/employee/employee.module';
 import { HelpModule } from './pages/help/help.module';
 import { ClientModule } from './pages/client/client.module';
 import { CartModule } from './pages/cart/cart.module';
@@ -26,6 +27,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { PasswordModule } from './core/password/password.module';
 import { PaymentModule } from './pages/payment/payment.module';
 import { ProductsModule } from './pages/products/product.module';
+import { MessagesModule } from './pages/message/messages.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { ProductsModule } from './pages/products/product.module';
   ],
 
   imports: [
+    MessagesModule,
+    EmployeeModule,
     AuthModule,
     AppRoutingModule,
     ClientModule,

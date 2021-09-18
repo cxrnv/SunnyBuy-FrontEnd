@@ -26,7 +26,7 @@ export class PixPageComponent implements OnInit {
 
   ngOnInit(): void 
   {
-    this.clientService.getClient()
+    this.clientService.getClientLoggedIn()
     .subscribe
     (
       x => {

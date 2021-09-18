@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DefaultComponent } from './default/default.component';
 import { RouterModule } from '@angular/router';
@@ -12,14 +13,15 @@ import { NgChatModule } from 'ng-chat';
     declarations: [
         HelpPageComponent,
         ChatComponent,
-        DefaultComponent
+        DefaultComponent,
     ],
     imports: [
         RouterModule,
         MatButtonModule,
         HomeModule,
         NgChatModule,
-        CommonModule
+        CommonModule,
+        ReactiveFormsModule,
     ],
     exports:
         [

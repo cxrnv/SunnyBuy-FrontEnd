@@ -29,6 +29,11 @@ export class EmployeeService {
       );
   }
 
+  public editEmployee(model: { employeeId: number, image: string | ArrayBuffer })
+  {
+    return this._editEmployee(model);
+  }
+
   public login(model: { email: string, password: string }) {
     return this._login(model);
   }
@@ -50,4 +55,10 @@ export class EmployeeService {
         );
     }
   
+    private _editEmployee(model: { employeeId: number, image: string | ArrayBuffer }): Observable<boolean> {
+      return this.http.put<boolean>(apiUrl + '/Employee/', model)
+        .pipe(
+          take(1)
+        );
+    }
 }

@@ -13,7 +13,7 @@
               <img mat-button [matMenuTriggerFor]="menu" class="profile-picture" [src]="employee.image" alt="">
               <img mat-button [matMenuTriggerFor]="menu" src="assets/profile/img-default/icon.png" *ngIf="employee.image == null">
               <mat-menu #menu="matMenu"  class="customize">
-                      <p routerLink="/client" mat-menu-item>Profile</p>
+                      <p routerLink="employee" mat-menu-item>Profile</p>
                       <p routerLink="/auth" mat-menu-item>Logout</p>
                   </mat-menu>
           </div>

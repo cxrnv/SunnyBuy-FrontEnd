@@ -6,15 +6,18 @@
   </div>
   <ol class="chat" style=" height: xyz;" #scrollMe [scrollTop]="scrollMe.scrollHeightt" *ngIf="messages.length > 0">
     <li *ngFor="let message of messages">
-      <div class="msg-employee" *ngIf="message.personTypeEnum == 1">
+      <div class="client-card-msg">
+        <div class="msg-client" *ngIf="message.personTypeEnum == 2">
           <p>{{ message.description }} </p>
-        <time>{{ message.dateMessage }}</time>
+          <time>{{ message.dateMessage | date:'shortTime' }}</time>
+        </div>
       </div>
-      <div class="msg-client" *ngIf="message.personTypeEnum == 2">
-        <!-- <p >{{client.name}}</p> -->
-        <p>{{ message.description }} </p>
-      <time>{{ message.dateMessage }}</time>
-    </div>
+      <div class="employee-card-msg">
+        <div class="msg-employee" *ngIf="message.personTypeEnum == 1">
+          <p>{{ message.description }} </p>
+          <time>{{ message.dateMessage | date:'shortTime'}}</time>
+        </div>
+      </div>
     </li>
   </ol>
 

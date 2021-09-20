@@ -32,4 +32,9 @@ export class EmployeeHeaderComponent implements OnInit {
     {
       this.route.navigateByUrl('employee-page/chat-page');
     }
+
+    goToProfile()
+    {
+      this.route.navigateByUrl('employee-page/employee');
+    }
 }

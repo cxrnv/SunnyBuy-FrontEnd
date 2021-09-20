@@ -1,0 +1,76 @@
+<div class="help-header">
+  <nav>
+    <div class="grid-links">
+      <div class="links">
+        <a routerLink="/employee-page">
+          Home
+        </a>
+      </div>
+      <div class="links">
+        <a routerLink="/employee-page">
+          About us
+        </a>
+      </div>
+      <div class="grid-blank">
+      </div>
+    </div>
+  </nav>
+  <header>
+    <div class="grid-1">
+      <div class="profile">
+        <div class="modal-picture-profile">
+          <div class="picture-card">
+            <img class="profile_picture" [src]="employee.image" alt="img_profile">
+            <img class="profile_picture"
+              src="https://www.kindpng.com/picc/m/10-104902_simple-user-icon-user-icon-white-png-transparent.png"
+              *ngIf="employee.image == null">
+          </div>
+          <hr>
+          <button mat-raised-button class="btn-image">
+            <label>
+              <input type="file" (change)="handleFileInput($event.target.files)" />
+              Edit profile photo
+            </label>
+          </button>
+          <button class="save-image" mat-raised-button (click)="saveEditImage()">Save profile photo</button>
+        </div>
+      </div>
+
+      <img class="image" src="./../../../../assets/help/profile-employee.png" alt="">
+    </div>
+
+    <div class="grid-2">
+      <div class="contact-us">
+        <div class="title-c-u">
+          <h3>Employee profile</h3>
+          <div class="information">
+            <div class="title">
+              <p>Full name: </p>
+              <p>E-mail address: </p>
+              <p>Position: </p>
+              <hr>
+            </div>
+            <div class="data">
+              <p>{{employee.name}}</p>
+              <p>{{employee.email}}</p>
+              <p>{{employee.position}}</p>
+              <hr>
+            </div>
+            <hr>
+          </div>
+        </div>
+        <div class="logo-c-u">
+          <h3>SunnyBuy</h3>
+          <p>This page has immutable data, just for <br>
+            viewing the information :)
+          </p>
+          <hr>
+          <button mat-raised-button (click)="goToHome()">
+            Go to home
+          </button>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>

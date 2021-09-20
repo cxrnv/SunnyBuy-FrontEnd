@@ -1,3 +1,4 @@
+import { EmployeeProfileComponent } from './pages/employee/employee-profile/employee-profile.component';
 import { MessageComponent } from './pages/message/message.component';
 import { EmployeeChatComponent } from './pages/employee/employee-chat/employee-chat.component';
 import { EmployeeChatGridComponent } from './pages/employee/employee-chat-grid/employee-chat-grid.component';
@@ -47,10 +48,12 @@ const routes: Routes =
           },
         ]
     },
+
     {
       path: 'employee-page', component: EmployeeComponent,
       children:
         [
+          { path: 'employee', component:EmployeeProfileComponent},
           { path: 'home', component: EmployeeHeaderComponent },
           {
             path: 'chat-page', component: EmployeeChatGridComponent, children:

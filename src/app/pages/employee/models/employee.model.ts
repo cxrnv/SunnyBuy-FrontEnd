@@ -4,7 +4,7 @@ export interface Employee
     name           : string;
     email          : string;
     password       : string;
-    image          : string;
+    image          : string | ArrayBuffer;
     position       : string;
     personTypeEnum : number;
 }

@@ -33,10 +33,10 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   ) { }
 
   ngOnInit() {
-   
     this.messagesService.getMessages(this.clientService.getClientId()).subscribe(x=> this.messages = x );
+    this.messagesService.message.subscribe(data => this.messages = data);
     this.form = this.createMessage();
-    this.employeeService.getEmployee();
+    this.employeeService.getEmployee().subscribe(data => this.employee = data);
   }
 
   createMessage(): FormGroup {

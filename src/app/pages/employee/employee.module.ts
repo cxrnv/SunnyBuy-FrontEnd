@@ -1,3 +1,4 @@
+import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
 import { EmployeeChatComponent } from './employee-chat/employee-chat.component';
 import { EmployeeHeaderComponent } from './employee-header/employee-header.component';
 import { EmployeeChatGridComponent } from './employee-chat-grid/employee-chat-grid.component';
@@ -18,7 +19,8 @@ import { MatMenuModule } from '@angular/material/menu';
       EmployeeComponent,
       EmployeeChatGridComponent,
       EmployeeHeaderComponent,
-      EmployeeChatComponent
+      EmployeeChatComponent,
+      EmployeeProfileComponent
   ],
   imports: [
     CommonModule,

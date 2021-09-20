@@ -11,7 +11,7 @@
         <img class="icon" src="{{client.image}}" alt="">
       </div>
       <div routerLink="./chat/{{client.clientId}}" class="card-name">{{client.name}}</div>
-      <div class="card-notification"><p class="notification">{{client.clientId}}</p></div>
+      <div class="card-notification"><p *ngIf="messages !== null" class="notification">*</p></div>
     </div>
   </div>
 </div>

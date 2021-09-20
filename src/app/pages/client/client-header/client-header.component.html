@@ -1,7 +1,7 @@
 <div class="client-header">
     <div class="client-header-content">
         <div class="title">
-            <h1>Hello {{client.name}}</h1>
+            <h1 *ngIf="client">Hello {{client.name}}</h1>
             <p class="msg">
                 This is your profile page. You can see you personal information and edit it !
             </p>

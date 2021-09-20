@@ -1,23 +1,26 @@
-import { Router } from '@angular/router';
 import { CreditCard } from './../../payment/models/creditcard.model';
-import { PaymentService } from './../../payment/payment.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { PaymentService } from './../../payment/payment.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ClientService } from '../client.service';
 import { Client } from '../models/client.model';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-client-header',
   templateUrl: './client-header.component.html',
   styleUrls: ['./client-header.component.scss']
 })
-export class ClientHeaderComponent implements OnInit {
+export class ClientHeaderComponent implements OnInit, OnDestroy {
 
   formCard: FormGroup = null;
   card: CreditCard[];
   fileToUpload: any;
   formEdit: FormGroup;
   client: Client = {} as Client;
+
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private clientService: ClientService,
@@ -29,13 +32,22 @@ export class ClientHeaderComponent implements OnInit {
     this.formEdit.disable();
     this.get();
     this.formCard = this.createAddCard();
+
+    this.getCards();
+
+    // Refresh Observables
     this.paymentService.creditCard
       .subscribe(c => this.card = c);
 
     this.clientService.client
       .subscribe(client => this.client = client);
-      
-    this.getCards();
+
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    })
   }
 
   editClient(): FormGroup {
@@ -52,10 +64,6 @@ export class ClientHeaderComponent implements OnInit {
       )
   }
 
-  enableEditClient() {
-    this.formEdit.enable();
-  }
-
   saveEditClient() {
     const model =
     {
@@ -69,25 +77,39 @@ export class ClientHeaderComponent implements OnInit {
       image: this.client.image
     }
 
-    this.clientService.editClient(model)
-      .subscribe(x => {
-        if (x) {
+    this.subscriptions
+      .push
+      (
 
-          this.clientService.showMessageSuccess('Operation executed successfully')
-          this.formEdit.disable()
-        }
-        else {
-          this.clientService.showMessageError('Occurred an error while editing')
-        }
-      });
+        this.clientService.editClient(model)
+          .subscribe(x => {
+            if (x) {
+
+              this.clientService.showMessageSuccess('Operation executed successfully')
+              this.formEdit.disable()
+            }
+            else {
+              this.clientService.showMessageError('Occurred an error while editing')
+            }
+          })
+      )
+  }
+
+  enableEditClient() {
+    this.formEdit.enable();
   }
 
   get() {
-    this.clientService.getClientLoggedIn()
-      .subscribe(data => {
-        this.client = data;
-        this.formEdit.patchValue(data);
-      })
+    this.subscriptions
+      .push
+      (
+
+        this.clientService.getClientLoggedIn()
+          .subscribe(data => {
+            this.client = data;
+            this.formEdit.patchValue(data);
+          })
+      )
   }
 
   handleFileInput(file: FileList) {
@@ -110,7 +132,11 @@ export class ClientHeaderComponent implements OnInit {
   }
 
   getCards() {
-    this.paymentService.existingCards().subscribe(x => this.card = x)
+    this.subscriptions
+      .push
+      (
+        this.paymentService.existingCards().subscribe(x => this.card = x)
+      )
   }
 
   createAddCard(): FormGroup {
@@ -135,15 +161,20 @@ export class ClientHeaderComponent implements OnInit {
       securityCode: this.formCard.get('securityCode').value,
     }
 
-    this.paymentService.postCreditCard(model)
-      .subscribe(x => {
-        if (x) {
-          this.clientService.showMessageSuccess('Credit card added')
-        }
-        else {
-          this.clientService.showMessageError("Coudn't add the card")
-        }
-      })
+    this.subscriptions
+      .push
+      (
+
+        this.paymentService.postCreditCard(model)
+          .subscribe(x => {
+            if (x) {
+              this.clientService.showMessageSuccess('Credit card added')
+            }
+            else {
+              this.clientService.showMessageError("Coudn't add the card")
+            }
+          })
+      )
   }
 
   deleteCard(creditCardId: number) {
@@ -153,19 +184,25 @@ export class ClientHeaderComponent implements OnInit {
       creditCardId: creditCardId,
       deleted: true,
     }
-    return this.paymentService
-      .putCreditCard(model)
-      .subscribe
+
+    this.subscriptions
+      .push
       (
-        x => {
-          if (x) {
-            this.clientService.showMessageSuccess('Credit card deleted')
-          }
-          else {
-            this.clientService.showMessageError("Coudn't delete the card")
-          }
-        }
-      );
+
+        this.paymentService
+          .putCreditCard(model)
+          .subscribe
+          (
+            x => {
+              if (x) {
+                this.clientService.showMessageSuccess('Credit card deleted')
+              }
+              else {
+                this.clientService.showMessageError("Coudn't delete the card")
+              }
+            }
+          )
+      )
   }
 
   disableClient() {
@@ -174,17 +211,19 @@ export class ClientHeaderComponent implements OnInit {
       disabled: true
     }
 
-    this.clientService
-      .disableClient(model)
-      .subscribe
-      (x => 
-        {
-          if (x)
-          {
-            console.log(x);
-            this.route.navigateByUrl('/auth');
-          }else
-          console.log(x)
-        });
+    this.subscriptions
+      .push
+      (
+        this.clientService
+          .disableClient(model)
+          .subscribe
+          (x => {
+            if (x) {
+              console.log(x);
+              this.route.navigateByUrl('/auth');
+            } else
+              console.log(x)
+          })
+      )
   }
 }

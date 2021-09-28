@@ -6,7 +6,6 @@ import { HomeModule } from './pages/home/home.module';
 import { PurchaseModule } from './pages/purchase/purchase.module';
 import { MatInputModule } from '@angular/material/input';
 import { PaymentTypeChoosePageComponent } from './pages/payment/payment-type-choose-page.component';
-import { PaymentTypeHeaderComponent } from './pages/payment/payment-header/payment-type-header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -32,8 +31,7 @@ import { MessagesModule } from './pages/message/messages.module';
 @NgModule({
   declarations: [
     AppComponent,
-    PaymentTypeChoosePageComponent,
-    PaymentTypeHeaderComponent,
+    PaymentTypeChoosePageComponent
   ],
 
   imports: [

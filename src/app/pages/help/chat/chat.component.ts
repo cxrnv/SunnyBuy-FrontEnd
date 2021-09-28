@@ -4,8 +4,6 @@ import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@ang
 import { ClientService } from '../../client/client.service';
 import { EmployeeService } from '../../employee/employee.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import { switchMap } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
 import { MessageService } from '../../message/message.service';
 import { Message } from '../../message/models/message.model';
 
@@ -27,7 +25,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   constructor(
     private clientService: ClientService,
-    private route: ActivatedRoute,
     private messagesService: MessageService,
     private employeeService: EmployeeService
   ) { }

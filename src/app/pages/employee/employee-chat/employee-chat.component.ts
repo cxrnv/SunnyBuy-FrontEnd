@@ -15,18 +15,18 @@ import { MessageService } from '../../message/message.service';
 })
 
 export class EmployeeChatComponent implements OnInit, AfterViewChecked {
+
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
-
+  clientId: any;
   form: FormGroup = null;
   client: Client = {} as Client;
-  clientId: any;
-  messages: Message[] = {} as Message[];
   clients: Client[] = {} as Client[];
+  messages: Message[] = {} as Message[];
 
   constructor(
-    private clientService: ClientService,
     private route: ActivatedRoute,
+    private clientService: ClientService,
     private messagesService: MessageService,
     private employeeService: EmployeeService
   ) { }

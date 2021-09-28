@@ -21,6 +21,7 @@ export class CartHeaderComponent implements OnInit, OnDestroy {
   constructor(private cartService: CartService, private clientService: ClientService) { }
 
   ngOnInit(): void {
+    /*  */
     this.getProductsCart();
     this.getTotalCart();
 

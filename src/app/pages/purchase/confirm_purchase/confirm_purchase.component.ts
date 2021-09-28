@@ -1,10 +1,10 @@
+import { ClientService } from '../../client/client.service';
+import { GetCart } from '../../cart/models/getCart.model';
+import { CartService } from '../../cart/cart.service';
+import { PurchaseService } from '../purchase.service';
+import { Purchase } from '../models/purchase.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CartService } from '../../cart/cart.service';
-import { GetCart } from '../../cart/models/getCart.model';
-import { ClientService } from '../../client/client.service';
-import { Purchase } from '../models/purchase.model';
-import { PurchaseService } from '../purchase.service';
 
 @Component({
   selector: 'app-confirm_purchase',
@@ -12,12 +12,17 @@ import { PurchaseService } from '../purchase.service';
   styleUrls: ['./confirm_purchase.component.scss']
 })
 export class Confirm_purchaseComponent implements OnInit {
-  
-  totalCart: number;
+
   cart: GetCart[];
+  totalCart: number;
   purchase: Purchase = {} as Purchase;
 
-  constructor(private purchaseService: PurchaseService, private clientService: ClientService, private route: Router, private cartService: CartService) { }
+  constructor(
+    private purchaseService: PurchaseService,
+    private clientService: ClientService,
+    private cartService: CartService,
+    private route: Router
+  ) { }
 
   ngOnInit(): void {
     this.getPurchase();

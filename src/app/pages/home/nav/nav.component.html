@@ -9,7 +9,6 @@
         <form class="form-inline active-cyan-3 active-cyan-4">
             <input class="form-control form-control-sm ml-3 w-75" name="search" [(ngModel)]="searchText" type="text"
                 placeholder="Search" aria-label="Search">
-
             <div class="search" *ngIf="searchText">
                 <tbody>
                     <tr *ngFor="let p of products | filter:searchText">
@@ -37,16 +36,14 @@
             </div>
 
             <div class="icon">
-
                 <img mat-button [matMenuTriggerFor]="menu" class="profile-picture" [src]="client.image" alt="">
                 <img mat-button [matMenuTriggerFor]="menu" src="assets/profile/img-default/icon.png" *ngIf="client.image == null">
                 <mat-menu #menu="matMenu"  class="customize">
                         <p routerLink="/client" mat-menu-item>Profile</p>
-                        <p routerLink="/auth" mat-menu-item>Logout</p>
                         <p routerLink="/help/default" mat-menu-item>Help me</p>
+                        <p routerLink="/auth" mat-menu-item>Logout</p>
                     </mat-menu>
             </div>
-
         </div>
     </div>
 </div>

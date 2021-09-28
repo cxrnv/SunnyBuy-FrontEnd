@@ -1,7 +1,6 @@
 import { EmployeeService } from './../../employee/employee.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { ClientService } from '../../client/client.service';
 import { Employee } from '../../employee/models/employee.model';
 
 @Component({
@@ -15,7 +14,6 @@ export class DefaultComponent implements OnInit {
 
   constructor(
     private route: Router,
-    private clientService: ClientService,
     private employeeService: EmployeeService) { }
 
   ngOnInit() {
